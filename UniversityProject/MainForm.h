@@ -70,7 +70,7 @@ namespace UniversityProject {
 			this->ClientSize = System::Drawing::Size(679, 589);
 			this->Controls->Add(this->label1);
 			this->Name = L"MainForm";
-			this->Text = L"MainForm";
+			this->Text = L"University Project";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
