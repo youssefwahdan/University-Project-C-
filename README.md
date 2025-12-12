@@ -10,5 +10,5 @@
 # Notice
 ### before starting the program, database should be prepared so,
 ###    - Create database.
-###    - Exxute the query that is in query.txt.
+###    - Excute the query that is in query.txt.
 ###    - Put connectionString on UniversityProject/App.config (on the connectionString attribute).
