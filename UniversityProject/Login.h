@@ -1,6 +1,6 @@
 #include "MainForm.h"
+#include "StudentMainForm.h"
 #pragma once
-
 namespace UniversityProject {
 
 	using namespace System;
@@ -35,21 +35,19 @@ namespace UniversityProject {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::TextBox^ username;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ password;
-	private: System::Windows::Forms::Button^ button1;
-	protected:
-
-	protected:
+	private: 
+		System::Windows::Forms::Label^ label1;
+		System::Windows::Forms::TextBox^ username;
+		System::Windows::Forms::Label^ label2;
+		System::Windows::Forms::Label^ label3;
+		System::Windows::Forms::TextBox^ password;
+		System::Windows::Forms::Button^ button1;
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -71,19 +69,19 @@ namespace UniversityProject {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"MV Boli", 48, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(148, 30);
+			this->label1->Location = System::Drawing::Point(138, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(304, 105);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Sign in";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
-			// textBox1
+			// username
 			// 
 			this->username->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->username->Location = System::Drawing::Point(170, 219);
-			this->username->Name = L"textBox1";
+			this->username->Location = System::Drawing::Point(156, 189);
+			this->username->Name = L"username";
 			this->username->Size = System::Drawing::Size(260, 30);
 			this->username->TabIndex = 1;
 			// 
@@ -91,7 +89,7 @@ namespace UniversityProject {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			this->label2->Location = System::Drawing::Point(165, 191);
+			this->label2->Location = System::Drawing::Point(151, 161);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(102, 25);
 			this->label2->TabIndex = 2;
@@ -101,17 +99,17 @@ namespace UniversityProject {
 			// 
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			this->label3->Location = System::Drawing::Point(165, 267);
+			this->label3->Location = System::Drawing::Point(151, 237);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(98, 25);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Password";
 			// 
-			// textBox2
+			// password
 			// 
 			this->password->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			this->password->Location = System::Drawing::Point(170, 295);
-			this->password->Name = L"textBox2";
+			this->password->Location = System::Drawing::Point(156, 265);
+			this->password->Name = L"password";
 			this->password->Size = System::Drawing::Size(260, 30);
 			this->password->TabIndex = 3;
 			this->password->UseSystemPasswordChar = true;
@@ -119,55 +117,76 @@ namespace UniversityProject {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::DarkOrange;
+			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(240, 350);
+			this->button1->Location = System::Drawing::Point(226, 320);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(120, 40);
 			this->button1->TabIndex = 5;
-			this->button1->Text = L"Sign in";
+			this->button1->Text = L"Log in";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &Login::button1_Click);
 			// 
 			// Login
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
-			this->ClientSize = System::Drawing::Size(582, 553);
+			this->ClientSize = System::Drawing::Size(582, 453);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->password);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->username);
 			this->Controls->Add(this->label1);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
 			this->Name = L"Login";
-			this->Padding = System::Windows::Forms::Padding(30);
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Login";
+			this->Load += gcnew System::EventHandler(this, &Login::Form1_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ user = this->username->Text;
-	String^ pass = this->password->Text;
+	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ user = this->username->Text;
+		String^ pass = this->password->Text;
 
-	if (user == "admin" && pass == "123") {
-		// Hide login window
-		this->Hide();
+		if (user == "admin" && pass == "123") {
+			// Hide login window
+			this->Hide();
 
-		// Show main form
-		MainForm^ main = gcnew MainForm();
-		main->ShowDialog();
+			// Show main form
+			MainForm^ main = gcnew MainForm();
+			main->ShowDialog();
 
-		// Close login after main form ends
-		this->Close();
+			// Close login after main form ends
+			this->Close();
+		}
+		else if (user == "student" && pass == "123") {
+			// Hide login window
+			this->Hide();
+
+			// Show student main form
+			StudentMainForm^ student = gcnew StudentMainForm();
+			student->ShowDialog();
+
+			// Close login after main form ends
+			this->Close();
+		}
+		else {
+			MessageBox::Show("Invalid username or password!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
 	}
-	else {
-		MessageBox::Show("Invalid username or password!","Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
+		label1->Left = (this->ClientSize.Width - label1->Width) / 2;
+		label2->Left = (this->ClientSize.Width - username->Width) / 2;
+		username->Left = (this->ClientSize.Width - username->Width) / 2;
+		label3->Left = (this->ClientSize.Width - password->Width) / 2;
+		password->Left = (this->ClientSize.Width - password->Width) / 2;
+		button1->Left = (this->ClientSize.Width - button1->Width) / 2;
 	}
-}
 };
+
 }
