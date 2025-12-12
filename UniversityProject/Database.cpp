@@ -104,55 +104,6 @@ bool Database::AddOrUpdateGrade(int studentId, int subjectId, String^ assignment
     }
 }
 
-bool Database::AddOrUpdateGrade(int studentId, int subjectId, int assignment1, int assignment2, double finalGrade)
-{
-    SqlConnection^ conn = nullptr;
-    try
-    {
-        conn = gcnew SqlConnection(connectionString);
-        conn->Open();
-
-        // Check if grade exists
-        String^ checkQuery = "SELECT COUNT(*) FROM Grades WHERE StudentId = @studentId AND SubjectId = @subjectId";
-        SqlCommand^ checkCmd = gcnew SqlCommand(checkQuery, conn);
-        checkCmd->Parameters->AddWithValue("@studentId", studentId);
-        checkCmd->Parameters->AddWithValue("@subjectId", subjectId);
-
-        int count = (int)checkCmd->ExecuteScalar();
-
-        String^ query;
-        if (count > 0)
-        {
-            // Update existing grade
-            query = "UPDATE Grades SET Assignment1 = @assignment1, Assignment2 = @assignment2, FinalGrade = @finalGrade WHERE StudentId = @studentId AND SubjectId = @subjectId";
-        }
-        else
-        {
-            // Insert new grade
-            query = "INSERT INTO Grades (StudentId, SubjectId, Assignment1, Assignment2, FinalGrade) VALUES (@studentId, @subjectId, @assignment1, @assignment2, @finalGrade)";
-        }
-
-        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
-        cmd->Parameters->AddWithValue("@studentId", studentId);
-        cmd->Parameters->AddWithValue("@subjectId", subjectId);
-        cmd->Parameters->AddWithValue("@assignment1", assignment1);
-        cmd->Parameters->AddWithValue("@assignment2", assignment2);
-        cmd->Parameters->AddWithValue("@finalGrade", finalGrade);
-
-        int rowsAffected = cmd->ExecuteNonQuery();
-        return rowsAffected > 0;
-    }
-    catch (Exception^)
-    {
-        return false;
-    }
-    finally
-    {
-        if (conn != nullptr)
-            delete conn;
-    }
-}
-
 bool Database::UpdateStudent(int studentId, String^ name, String^ section, int year) {
     try {
         SqlConnection^ conn = gcnew SqlConnection(connectionString);

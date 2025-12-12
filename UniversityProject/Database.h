@@ -20,7 +20,6 @@ public:
     bool UpdateStudent(int studentId, String^ name, String^ section, int year);
     bool DeleteStudent(int studentId);
 	bool AddOrUpdateGrade(int studentId, int subjectId, String^ assignment1, String^ assignment2, double finalGrade);
-	bool AddOrUpdateGrade(int studentId, int subjectId, int assignment1, int assignment2, double finalGrade);
 	bool DeleteGrade(int gradeId);
 	//bool DeleteGradesByStudent(int studentId);
 	//bool DeleteGradesBySubject(int subjectId);

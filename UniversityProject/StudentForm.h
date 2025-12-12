@@ -209,6 +209,7 @@ namespace UniversityProject {
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
             this->Name = L"StudentForm";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+            this->Text = L"Student";
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStudents))->EndInit();
             this->ResumeLayout(false);
             this->PerformLayout();
