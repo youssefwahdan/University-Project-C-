@@ -7,19 +7,19 @@ using namespace System::Windows::Forms;
 
 	ref class MainForm;
 namespace UniversityProject {
-    public ref class StudentForm : public System::Windows::Forms::Form
+    public ref class StudentControl : public System::Windows::Forms::UserControl
     {
     public:
-        StudentForm(Form^ form)
+        StudentControl()
         {
             InitializeComponent();
             db = gcnew Database(GetConnectionString());
             LoadStudents();
-            mainForm = form;
+            //mainForm = form;
         }
 
     protected:
-        ~StudentForm()
+        ~StudentControl()
         {
             if (components)
                 delete components;
@@ -39,9 +39,9 @@ namespace UniversityProject {
         System::Windows::Forms::Label^ label3;
         System::ComponentModel::IContainer^ components;
         SqlDataAdapter^ adapter;
-        System::Windows::Forms::Button^ button1;
+
         BindingSource^ bindingSource1;
-        Form^ mainForm;
+        //Form^ mainForm;
 
 
         void InitializeComponent(void)
@@ -56,7 +56,6 @@ namespace UniversityProject {
             this->label1 = (gcnew System::Windows::Forms::Label());
             this->label2 = (gcnew System::Windows::Forms::Label());
             this->label3 = (gcnew System::Windows::Forms::Label());
-            this->button1 = (gcnew System::Windows::Forms::Button());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStudents))->BeginInit();
             this->SuspendLayout();
             // 
@@ -64,56 +63,57 @@ namespace UniversityProject {
             // 
             this->btnAdd->BackColor = System::Drawing::Color::MediumSeaGreen;
             this->btnAdd->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnAdd->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnAdd->Font = (gcnew System::Drawing::Font(L"Segoe UI", 8, System::Drawing::FontStyle::Bold));
             this->btnAdd->ForeColor = System::Drawing::Color::White;
-            this->btnAdd->Location = System::Drawing::Point(426, 96);
+            this->btnAdd->Location = System::Drawing::Point(414, 101);
             this->btnAdd->Name = L"btnAdd";
-            this->btnAdd->Size = System::Drawing::Size(100, 40);
+            this->btnAdd->Size = System::Drawing::Size(80, 30);
             this->btnAdd->TabIndex = 0;
             this->btnAdd->Text = L"Add";
             this->btnAdd->UseVisualStyleBackColor = false;
-            this->btnAdd->Click += gcnew System::EventHandler(this, &StudentForm::btnAdd_Click);
+            this->btnAdd->Click += gcnew System::EventHandler(this, &StudentControl::btnAdd_Click);
             // 
             // btnUpdate
             // 
             this->btnUpdate->BackColor = System::Drawing::Color::RoyalBlue;
             this->btnUpdate->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnUpdate->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnUpdate->Font = (gcnew System::Drawing::Font(L"Segoe UI", 8, System::Drawing::FontStyle::Bold));
             this->btnUpdate->ForeColor = System::Drawing::Color::White;
-            this->btnUpdate->Location = System::Drawing::Point(532, 96);
+            this->btnUpdate->Location = System::Drawing::Point(500, 100);
             this->btnUpdate->Name = L"btnUpdate";
-            this->btnUpdate->Size = System::Drawing::Size(100, 40);
+            this->btnUpdate->Size = System::Drawing::Size(80, 30);
             this->btnUpdate->TabIndex = 0;
             this->btnUpdate->Text = L"Update";
             this->btnUpdate->UseVisualStyleBackColor = false;
-            this->btnUpdate->Click += gcnew System::EventHandler(this, &StudentForm::btnUpdate_Click);
+            this->btnUpdate->Click += gcnew System::EventHandler(this, &StudentControl::btnUpdate_Click);
             // 
             // btnDelete
             // 
             this->btnDelete->BackColor = System::Drawing::Color::Red;
             this->btnDelete->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnDelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnDelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 8, System::Drawing::FontStyle::Bold));
             this->btnDelete->ForeColor = System::Drawing::Color::White;
-            this->btnDelete->Location = System::Drawing::Point(638, 96);
+            this->btnDelete->Location = System::Drawing::Point(586, 100);
             this->btnDelete->Name = L"btnDelete";
-            this->btnDelete->Size = System::Drawing::Size(100, 40);
+            this->btnDelete->Size = System::Drawing::Size(80, 30);
             this->btnDelete->TabIndex = 0;
             this->btnDelete->Text = L"Delete";
             this->btnDelete->UseVisualStyleBackColor = false;
-            this->btnDelete->Click += gcnew System::EventHandler(this, &StudentForm::btnDelete_Click);
+            this->btnDelete->Click += gcnew System::EventHandler(this, &StudentControl::btnDelete_Click);
             // 
             // dgvStudents
             // 
             this->dgvStudents->AllowUserToAddRows = false;
             this->dgvStudents->BackgroundColor = System::Drawing::Color::Gainsboro;
             this->dgvStudents->ColumnHeadersHeight = 29;
-            this->dgvStudents->Location = System::Drawing::Point(12, 166);
+            this->dgvStudents->Dock = System::Windows::Forms::DockStyle::Bottom;
+            this->dgvStudents->Location = System::Drawing::Point(10, 327);
             this->dgvStudents->Name = L"dgvStudents";
             this->dgvStudents->RowHeadersWidth = 100;
-            this->dgvStudents->Size = System::Drawing::Size(758, 375);
+            this->dgvStudents->Size = System::Drawing::Size(767, 340);
             this->dgvStudents->TabIndex = 0;
-            this->dgvStudents->CellEndEdit += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StudentForm::dgvStudents_CellEndEdit);
-            this->dgvStudents->SelectionChanged += gcnew System::EventHandler(this, &StudentForm::dgvStudents_SelectionChanged);
+            this->dgvStudents->CellEndEdit += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StudentControl::dgvStudents_CellEndEdit);
+            this->dgvStudents->SelectionChanged += gcnew System::EventHandler(this, &StudentControl::dgvStudents_SelectionChanged);
             // 
             // txtName
             // 
@@ -124,8 +124,8 @@ namespace UniversityProject {
             this->txtName->Size = System::Drawing::Size(250, 30);
             this->txtName->TabIndex = 1;
             this->txtName->Text = L"Name";
-            this->txtName->GotFocus += gcnew System::EventHandler(this, &StudentForm::txtName_Enter);
-            this->txtName->LostFocus += gcnew System::EventHandler(this, &StudentForm::txtName_Leave);
+            this->txtName->GotFocus += gcnew System::EventHandler(this, &StudentControl::txtName_Enter);
+            this->txtName->LostFocus += gcnew System::EventHandler(this, &StudentControl::txtName_Leave);
             // 
             // txtSection
             // 
@@ -136,8 +136,8 @@ namespace UniversityProject {
             this->txtSection->Size = System::Drawing::Size(250, 30);
             this->txtSection->TabIndex = 2;
             this->txtSection->Text = L"Section";
-            this->txtSection->GotFocus += gcnew System::EventHandler(this, &StudentForm::txtSection_Enter);
-            this->txtSection->LostFocus += gcnew System::EventHandler(this, &StudentForm::txtSection_Leave);
+            this->txtSection->GotFocus += gcnew System::EventHandler(this, &StudentControl::txtSection_Enter);
+            this->txtSection->LostFocus += gcnew System::EventHandler(this, &StudentControl::txtSection_Leave);
             // 
             // cmbYear
             // 
@@ -153,6 +153,7 @@ namespace UniversityProject {
             this->label1->AutoSize = true;
             this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
+            this->label1->ForeColor = System::Drawing::Color::Black;
             this->label1->Location = System::Drawing::Point(7, 21);
             this->label1->Name = L"label1";
             this->label1->Size = System::Drawing::Size(82, 28);
@@ -163,6 +164,7 @@ namespace UniversityProject {
             // 
             this->label2->AutoSize = true;
             this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold));
+            this->label2->ForeColor = System::Drawing::Color::Black;
             this->label2->Location = System::Drawing::Point(7, 61);
             this->label2->Name = L"label2";
             this->label2->Size = System::Drawing::Size(148, 28);
@@ -173,29 +175,15 @@ namespace UniversityProject {
             // 
             this->label3->AutoSize = true;
             this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold));
+            this->label3->ForeColor = System::Drawing::Color::Black;
             this->label3->Location = System::Drawing::Point(7, 103);
             this->label3->Name = L"label3";
             this->label3->Size = System::Drawing::Size(150, 28);
             this->label3->TabIndex = 6;
             this->label3->Text = L"Academic Year";
             // 
-            // button1
+            // StudentControl
             // 
-            this->button1->BackColor = System::Drawing::Color::CornflowerBlue;
-            this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
-            this->button1->ForeColor = System::Drawing::Color::White;
-            this->button1->Location = System::Drawing::Point(670, 12);
-            this->button1->Name = L"button1";
-            this->button1->Size = System::Drawing::Size(100, 40);
-            this->button1->TabIndex = 7;
-            this->button1->Text = L"Back";
-            this->button1->UseVisualStyleBackColor = false;
-            this->button1->Click += gcnew System::EventHandler(this, &StudentForm::button1_Click);
-            // 
-            // StudentForm
-            // 
-            this->ClientSize = System::Drawing::Size(782, 553);
-            this->Controls->Add(this->button1);
             this->Controls->Add(this->label3);
             this->Controls->Add(this->label2);
             this->Controls->Add(this->label1);
@@ -206,10 +194,9 @@ namespace UniversityProject {
             this->Controls->Add(this->txtName);
             this->Controls->Add(this->txtSection);
             this->Controls->Add(this->cmbYear);
-            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
-            this->Name = L"StudentForm";
-            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-            this->Text = L"Student";
+            this->Name = L"StudentControl";
+            this->Padding = System::Windows::Forms::Padding(10);
+            this->Size = System::Drawing::Size(787, 677);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvStudents))->EndInit();
             this->ResumeLayout(false);
             this->PerformLayout();
@@ -329,10 +316,10 @@ namespace UniversityProject {
             // Use System::Configuration::ConfigurationManager to access connection strings
             return System::Configuration::ConfigurationManager::ConnectionStrings["UniversityDb"]->ConnectionString;
         }
-        System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	           this->Hide();
-               mainForm->Show();
-               this->Close();
-        }
+        //System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	       //    this->Hide();
+        //       mainForm->Show();
+        //       this->Close();
+        //}
 };
 }

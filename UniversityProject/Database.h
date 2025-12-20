@@ -1,4 +1,3 @@
-
 #pragma once
 
 using namespace System;
@@ -26,7 +25,7 @@ public:
 	//bool UpdateSubject(int subjectId, String^ name, int yearOffered);
 	//bool DeleteSubject(int subjectId);
 	//bool SubjectExists(String^ name, int yearOffered);
-	DataTable^ GetGrades();
+	DataTable^ GetAcademicYears();
 	//DataTable^ GetGradesByStudent(int studentId);
 	//DataTable^ GetGradesBySubject(int subjectId);
 	//DataTable^ GetGradesByStudentAndSubject(int studentId, int subjectId);
@@ -44,6 +43,15 @@ public:
 	//DataTable^ GetSubjectsByYearOffered(int yearOffered);
 
     DataTable^ GetSubjects();
+	SqlDataReader^ LoadStudentData(int id);
+	SqlDataReader^ LoadDepartmentData(int id);
+	SqlDataReader^ LoadFacultyData(int id);
+	SqlDataReader^ LoadAcademicLevelData(int id);
+	SqlDataReader^ LoadCourse(int id);
+	SqlDataReader^ LoadStudentCourses(int id);
+	SqlDataReader^ LoadGrades(int id);
+	SqlDataReader^ LoadGradeBreakdown(int id);
+	SqlDataReader^ ExecuteReader(String^ query, array<SqlParameter^>^ parameters);
     bool AddSubject(String^ name, int yearOffered);
     // ... More methods for Grades, etc.
 };

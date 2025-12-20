@@ -7,20 +7,19 @@ using namespace System::Configuration;
 
 namespace UniversityProject {
 
-    public ref class SubjectForm : public System::Windows::Forms::Form
+    public ref class SubjectControl : public System::Windows::Forms::UserControl
     {
     public:
-        SubjectForm(Form^ form)
+        SubjectControl()
         {
             InitializeComponent();
             db = gcnew Database(GetConnectionString());
             LoadSubjects();
-            mainForm = form;
-
+            //mainForm = form;
         }
 
     protected:
-        ~SubjectForm()
+        ~SubjectControl()
         {
             if (components)
                 delete components;
@@ -35,7 +34,7 @@ namespace UniversityProject {
         System::Windows::Forms::Button^ btnUpdate;
         System::Windows::Forms::Button^ btnDelete;
         System::ComponentModel::IContainer^ components;
-        Form^ mainForm;
+        //Form^ mainForm;
 
 
 
@@ -54,7 +53,7 @@ namespace UniversityProject {
             this->btnAdd->Name = L"btnAdd";
             this->btnAdd->Size = System::Drawing::Size(75, 23);
             this->btnAdd->TabIndex = 0;
-            this->btnAdd->Click += gcnew System::EventHandler(this, &SubjectForm::btnAdd_Click);
+            this->btnAdd->Click += gcnew System::EventHandler(this, &SubjectControl::btnAdd_Click);
             // 
             // btnUpdate
             // 
@@ -62,7 +61,7 @@ namespace UniversityProject {
             this->btnUpdate->Name = L"btnUpdate";
             this->btnUpdate->Size = System::Drawing::Size(75, 23);
             this->btnUpdate->TabIndex = 0;
-            this->btnUpdate->Click += gcnew System::EventHandler(this, &SubjectForm::btnUpdate_Click);
+            this->btnUpdate->Click += gcnew System::EventHandler(this, &SubjectControl::btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -70,28 +69,33 @@ namespace UniversityProject {
             this->btnDelete->Name = L"btnDelete";
             this->btnDelete->Size = System::Drawing::Size(75, 23);
             this->btnDelete->TabIndex = 0;
-            this->btnDelete->Click += gcnew System::EventHandler(this, &SubjectForm::btnDelete_Click);
+            this->btnDelete->Click += gcnew System::EventHandler(this, &SubjectControl::btnDelete_Click);
             // 
             // dgvSubjects
             // 
+            this->dgvSubjects->AllowUserToAddRows = false;
             this->dgvSubjects->ColumnHeadersHeight = 29;
             this->dgvSubjects->Location = System::Drawing::Point(12, 199);
             this->dgvSubjects->Name = L"dgvSubjects";
             this->dgvSubjects->RowHeadersWidth = 51;
-            this->dgvSubjects->Size = System::Drawing::Size(758, 342);
+            this->dgvSubjects->Size = System::Drawing::Size(758, 340);
             this->dgvSubjects->TabIndex = 0;
-            this->dgvSubjects->SelectionChanged += gcnew System::EventHandler(this, &SubjectForm::dgvSubjects_SelectionChanged);
+            this->dgvSubjects->Dock = System::Windows::Forms::DockStyle::Bottom;
+            this->dgvSubjects->SelectionChanged += gcnew System::EventHandler(this, &SubjectControl::dgvSubjects_SelectionChanged);
             // 
-            // SubjectForm
+            // SubjectControl
             // 
             this->ClientSize = System::Drawing::Size(782, 553);
             this->Controls->Add(this->dgvSubjects);
             this->Controls->Add(this->btnDelete);
             this->Controls->Add(this->btnUpdate);
             this->Controls->Add(this->btnAdd);
-            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
-            this->Name = L"SubjectForm";
-            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->Padding = System::Windows::Forms::Padding(10);
+
+            //this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
+            this->Name = L"SubjectControl";
+            //this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvSubjects))->EndInit();
             this->ResumeLayout(false);
 

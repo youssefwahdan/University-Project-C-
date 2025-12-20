@@ -1,107 +1,299 @@
+
+#using <System.Configuration.dll>
+#include "StudentProfileControl.h"
+#include "CoursesGradesControl.h"
 #pragma once
-
+#include "AttendanceControl.h"
+using namespace System::Windows::Forms;
+using namespace System::Configuration;
 namespace UniversityProject {
+    public ref class StudentMainForm : public System::Windows::Forms::Form
+    {
+    public:
+        StudentMainForm(int id)
+        {
+            InitializeComponent();
+            db = gcnew Database(GetConnectionString());
+			StudentID = id;
+            LoadStudentData();
 
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
+        }
 
-	/// <summary>
-	/// Summary for MainStudentForm
-	/// </summary>
-	public ref class StudentMainForm : public System::Windows::Forms::Form
-	{
-	public:
-		StudentMainForm(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+    protected:
+        ~StudentMainForm()
+        {
+            if (components)
+                delete components;
+        }
+
+    private:
+        Database^ db;
+    private: System::Windows::Forms::Button^ btnCourses;
+
+        System::Windows::Forms::Button^ btnProfile;
+    private: System::Windows::Forms::Button^ btnAttendance;
+
+        System::Windows::Forms::Label^ welcomeLabel;
+        System::Windows::Forms::Button^ btnLogout;
+        System::Windows::Forms::Panel^ sidebarPanel;
+        System::Windows::Forms::Panel^ sectionsPanel;
+        System::Windows::Forms::Panel^ navbar;   
+        System::ComponentModel::IContainer^ components;
+    public:
+		int StudentID;
+        String^ UniversityID;
+		String^ FirstName;
+		String^ LastName;
+        String^ Gender;
+		DateTime BirthDate;
+        String^ Email;
+		String^ Phone;
+		int DepartmentID;
+        String^ DepartmentName;
+		int FacultyID;
+        String^ FacultyName;
+		DateTime AdmissionDate;
+		int AcademicLevelID;
+		String^ AcademicLevelName;
+
+
+
+        void InitializeComponent()
+        {
+            this->btnCourses = (gcnew System::Windows::Forms::Button());
+            this->btnProfile = (gcnew System::Windows::Forms::Button());
+            this->btnAttendance = (gcnew System::Windows::Forms::Button());
+            this->welcomeLabel = (gcnew System::Windows::Forms::Label());
+            this->btnLogout = (gcnew System::Windows::Forms::Button());
+            this->sidebarPanel = (gcnew System::Windows::Forms::Panel());
+            this->sectionsPanel = (gcnew System::Windows::Forms::Panel());
+            this->navbar = (gcnew System::Windows::Forms::Panel());
+            this->sidebarPanel->SuspendLayout();
+            this->navbar->SuspendLayout();
+            this->SuspendLayout();
+            // 
+            // btnCourses
+            // 
+            this->btnCourses->BackColor = System::Drawing::Color::OliveDrab;
+            this->btnCourses->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnCourses->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnCourses->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnCourses->Location = System::Drawing::Point(10, 72);
+            this->btnCourses->Name = L"btnCourses";
+            this->btnCourses->Size = System::Drawing::Size(180, 52);
+            this->btnCourses->TabIndex = 1;
+            this->btnCourses->Text = L"Courses";
+            this->btnCourses->UseVisualStyleBackColor = false;
+            this->btnCourses->Click += gcnew System::EventHandler(this, &StudentMainForm::btnCourses_Click);
+            // 
+            // btnProfile
+            // 
+            this->btnProfile->BackColor = System::Drawing::Color::DarkSlateGray;
+            this->btnProfile->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnProfile->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnProfile->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnProfile->Location = System::Drawing::Point(10, 20);
+            this->btnProfile->Name = L"btnProfile";
+            this->btnProfile->Size = System::Drawing::Size(180, 52);
+            this->btnProfile->TabIndex = 2;
+            this->btnProfile->Text = L"Profile";
+            this->btnProfile->UseVisualStyleBackColor = false;
+            this->btnProfile->Click += gcnew System::EventHandler(this, &StudentMainForm::btnProfile_Click);
+            // 
+            // btnAttendance
+            // 
+            this->btnAttendance->BackColor = System::Drawing::Color::Orange;
+            this->btnAttendance->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnAttendance->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnAttendance->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnAttendance->Location = System::Drawing::Point(10, 124);
+            this->btnAttendance->Name = L"btnAttendance";
+            this->btnAttendance->Size = System::Drawing::Size(180, 52);
+            this->btnAttendance->TabIndex = 0;
+            this->btnAttendance->Text = L"Attendance";
+            this->btnAttendance->UseVisualStyleBackColor = false;
+            this->btnAttendance->Click += gcnew System::EventHandler(this, &StudentMainForm::btnAttendance_Click);
+            // 
+            // welcomeLabel
+            // 
+            this->welcomeLabel->AutoSize = true;
+            this->welcomeLabel->BackColor = System::Drawing::Color::Transparent;
+            this->welcomeLabel->Dock = System::Windows::Forms::DockStyle::Left;
+            this->welcomeLabel->Font = (gcnew System::Drawing::Font(L"Segoe Script", 12, System::Drawing::FontStyle::Bold));
+            this->welcomeLabel->ForeColor = System::Drawing::Color::Black;
+            this->welcomeLabel->Location = System::Drawing::Point(0, 0);
+            this->welcomeLabel->Name = L"welcomeLabel";
+            this->welcomeLabel->Size = System::Drawing::Size(0, 33);
+            this->welcomeLabel->TabIndex = 3;
+            // 
+            // btnLogout
+            // 
+            this->btnLogout->BackColor = System::Drawing::Color::Red;
+            this->btnLogout->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnLogout->Dock = System::Windows::Forms::DockStyle::Right;
+            this->btnLogout->Font = (gcnew System::Drawing::Font(L"Segoe UI", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->btnLogout->Location = System::Drawing::Point(643, 0);
+            this->btnLogout->Name = L"btnLogout";
+            this->btnLogout->Size = System::Drawing::Size(75, 40);
+            this->btnLogout->TabIndex = 4;
+            this->btnLogout->Text = L"Logout";
+            this->btnLogout->UseVisualStyleBackColor = false;
+            this->btnLogout->Click += gcnew System::EventHandler(this, &StudentMainForm::btnLogout_Click);
+            // 
+            // sidebarPanel
+            // 
+            this->sidebarPanel->BackColor = System::Drawing::Color::DarkGray;
+            this->sidebarPanel->Controls->Add(this->btnAttendance);
+            this->sidebarPanel->Controls->Add(this->btnCourses);
+            this->sidebarPanel->Controls->Add(this->btnProfile);
+            this->sidebarPanel->Dock = System::Windows::Forms::DockStyle::Left;
+            this->sidebarPanel->Location = System::Drawing::Point(0, 0);
+            this->sidebarPanel->Name = L"sidebarPanel";
+            this->sidebarPanel->Padding = System::Windows::Forms::Padding(10, 20, 10, 0);
+            this->sidebarPanel->Size = System::Drawing::Size(200, 561);
+            this->sidebarPanel->TabIndex = 5;
+            // 
+            // sectionsPanel
+            // 
+            this->sectionsPanel->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->sectionsPanel->ForeColor = System::Drawing::Color::Black;
+            this->sectionsPanel->Location = System::Drawing::Point(200, 40);
+            this->sectionsPanel->Name = L"sectionsPanel";
+            this->sectionsPanel->Size = System::Drawing::Size(718, 521);
+            this->sectionsPanel->TabIndex = 6;
+            // 
+            // navbar
+            // 
+            this->navbar->Controls->Add(this->btnLogout);
+            this->navbar->Controls->Add(this->welcomeLabel);
+            this->navbar->Dock = System::Windows::Forms::DockStyle::Top;
+            this->navbar->Location = System::Drawing::Point(200, 0);
+            this->navbar->Name = L"navbar";
+            this->navbar->Size = System::Drawing::Size(718, 40);
+            this->navbar->TabIndex = 6;
+            // 
+            // StudentMainForm
+            // 
+            this->ClientSize = System::Drawing::Size(918, 561);
+            this->Controls->Add(this->sectionsPanel);
+            this->Controls->Add(this->navbar);
+            this->Controls->Add(this->sidebarPanel);
+            this->ForeColor = System::Drawing::Color::WhiteSmoke;
+            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
+            this->Name = L"StudentMainForm";
+            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+            this->sidebarPanel->ResumeLayout(false);
+            this->navbar->ResumeLayout(false);
+            this->navbar->PerformLayout();
+            this->ResumeLayout(false);
+
+        }
+
+        void btnAttendance_Click(System::Object^ sender, System::EventArgs^ e)
+        {
+            sectionsPanel->Controls->Clear();
+            AttendanceControl^ control = gcnew AttendanceControl(StudentID);
+            control->Dock = DockStyle::Fill;
+            sectionsPanel->Controls->Add(control);
+        }
+
+        void btnCourses_Click(System::Object^ sender, System::EventArgs^ e)
+        {
+
+            sectionsPanel->Controls->Clear();
+
+            CoursesGradesControl^ control = gcnew CoursesGradesControl(StudentID);
+            control->Dock = DockStyle::Fill;
+            sectionsPanel->Controls->Add(control);
+        }
+
+        void btnProfile_Click(System::Object^ sender, System::EventArgs^ e)
+        {
+            LoadDepartmentData();
+            LoadFacultyData();
+            LoadAcademicLevelData();
+            sectionsPanel->Controls->Clear();
+            StudentProfileControl^ control = gcnew StudentProfileControl(FirstName, LastName, DepartmentName, FacultyName, AcademicLevelName, UniversityID, AdmissionDate);
+            control->Dock = DockStyle::Fill;
+            sectionsPanel->Controls->Add(control);
+
+        }
+        String^ GetConnectionString()
+        {
+            // Use System::Configuration::ConfigurationManager to access connection strings
+            return System::Configuration::ConfigurationManager::ConnectionStrings["UniversityDb"]->ConnectionString;
+        }
+
+        System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^ e) {
+            Application::Restart();
+        }
+        void LoadStudentData()
+        {
+            try {
+                SqlDataReader^ reader = db->LoadStudentData(StudentID);
+                if (reader->Read()) {
+					UniversityID = reader["UniversityID"]->ToString();
+                    FirstName = reader["FirstName"]->ToString();
+                    LastName = reader["LastName"]->ToString();
+					Gender = reader["Gender"]->ToString();
+                    BirthDate = Convert::ToDateTime(reader["BirthDate"]);
+					Email = reader["Email"]->ToString();
+					Phone = reader["Phone"]->ToString();
+					DepartmentID = Convert::ToInt32(reader["DepartmentID"]);
+					FacultyID = Convert::ToInt32(reader["FacultyID"]);
+					AdmissionDate = Convert::ToDateTime(reader["AdmissionDate"]);
+					AcademicLevelID = Convert::ToInt32(reader["AcademicLevelID"]);
+					this->welcomeLabel->Text = "Welcome, " + FirstName + " " + LastName + "!";
+                }
+                reader->Close();
+            }
+            catch (Exception^ ex) {
+                MessageBox::Show("Error: " + ex->Message);
+            }
+        }
+        void LoadDepartmentData()
+        {
+            try {
+                SqlDataReader^ reader = db->LoadDepartmentData(DepartmentID);
+
+                if (reader->Read()) {
+                    DepartmentName = reader["Name"]->ToString();
+                    // Use departmentName as needed
+                }
+                reader->Close();
+            }
+            catch (Exception^ ex) {
+                MessageBox::Show("Error: " + ex->Message);
+            }
 		}
-
-	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~StudentMainForm()
-		{
-			if (components)
-			{
-				delete components;
-			}
+        void LoadFacultyData() {
+            try {
+                SqlDataReader^ reader = db->LoadFacultyData(FacultyID);
+                if (reader->Read()) {
+                    FacultyName = reader["Name"]->ToString();
+                    // Use departmentName as needed
+                }
+                reader->Close();
+            }
+            catch (Exception^ ex) {
+                MessageBox::Show("Error: " + ex->Message);
+            }
+        }
+        void LoadAcademicLevelData() {
+            try {
+                SqlDataReader^ reader = db->LoadAcademicLevelData(AcademicLevelID);
+                if (reader->Read()) {
+                    AcademicLevelName = reader["LevelName"]->ToString();
+                    // Use departmentName as needed
+                }
+                reader->Close();
+            }
+            catch (Exception^ ex) {
+                MessageBox::Show("Error: " + ex->Message);
+            }
 		}
-	private: 
-		System::Windows::Forms::Label^ label1;
-		System::Windows::Forms::Button^ btnLogout;
-	protected:
+       
 
-	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		System::ComponentModel::Container ^components;
-
-#pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		void InitializeComponent(void)
-		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->btnLogout = (gcnew System::Windows::Forms::Button());
-			this->SuspendLayout();
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Segoe Script", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(12, 9);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(421, 67);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Welcome, Student";
-			// 
-			// btnLogout
-			// 
-			this->btnLogout->BackColor = System::Drawing::Color::Red;
-			this->btnLogout->ForeColor = System::Drawing::Color::White;
-			this->btnLogout->Location = System::Drawing::Point(670, 9);
-			this->btnLogout->Name = L"btnLogout";
-			this->btnLogout->Size = System::Drawing::Size(100, 40);
-			this->btnLogout->TabIndex = 1;
-			this->btnLogout->Text = L"Logout";
-			this->btnLogout->UseVisualStyleBackColor = false;
-			this->btnLogout->Click += gcnew System::EventHandler(this, &StudentMainForm::btnLogout_Click);
-			// 
-			// StudentMainForm
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(782, 553);
-			this->Controls->Add(this->btnLogout);
-			this->Controls->Add(this->label1);
-			this->Name = L"StudentMainForm";
-			this->Text = L"MainStudentForm";
-			this->ResumeLayout(false);
-			this->PerformLayout();
-
-		}
-#pragma endregion
-		System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^ e) {
-			//    // Hide main window
-			//    this->Hide();
-			//    // Show login form
-			//    Login^ login = gcnew Login();
-			//    login->ShowDialog();
-			//    // Close main form after login form ends
-			//	this->Close();
-			Application::Restart();
-		}
-	};
+    };
 }

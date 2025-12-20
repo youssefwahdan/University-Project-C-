@@ -9,7 +9,7 @@ DataTable^ Database::GetStudents() {
     DataTable^ dt = gcnew DataTable();
     SqlConnection^ conn = gcnew SqlConnection(connectionString);
     try {
-        String^ query = "SELECT * FROM Students";
+        String^ query = "SELECT * FROM Student";
         SqlDataAdapter^ adapter = gcnew SqlDataAdapter(query, conn);
         adapter->Fill(dt);
     }
@@ -37,13 +37,13 @@ bool Database::AddStudent(String^ name, String^ section, int year) {
     }
 }
 
-DataTable^ Database::GetGrades()
+DataTable^ Database::GetAcademicYears()
 {
     DataTable^ dt = gcnew DataTable();
     SqlConnection^ conn = gcnew SqlConnection(connectionString);
     try
     {
-        String^ query = "SELECT * FROM Grades";
+        String^ query = "SELECT * FROM AcademicYear";
         SqlDataAdapter^ adapter = gcnew SqlDataAdapter(query, conn);
         adapter->Fill(dt);
     }
@@ -207,5 +207,183 @@ bool Database::AddSubject(String^ name, int yearOffered)
         return false;
     }
 }
+SqlDataReader^ Database::LoadStudentData(int id)
+{
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM Student WHERE StudentID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+SqlDataReader^ Database::LoadDepartmentData(int id)
+{
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM Department WHERE DepartmentID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+SqlDataReader^ Database::LoadFacultyData(int id)
+{
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM Faculty WHERE FacultyID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+SqlDataReader^ Database::LoadAcademicLevelData(int id)
+{
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM AcademicLevel WHERE AcademicLevelID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+SqlDataReader^ Database::LoadStudentCourses(int id) {
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM StudentCourses WHERE StudentID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+SqlDataReader^ Database::LoadGrades(int id) {
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM Grades WHERE StudentCourseID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+SqlDataReader^ Database::LoadCourse(int id) {
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM Course WHERE CourseID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+
+SqlDataReader^ Database::LoadGradeBreakdown(int id) {
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM GradeBreakdown WHERE GradeID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+SqlDataReader^ Database::ExecuteReader(String^ query, array<SqlParameter^>^ parameters) {
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        for each (SqlParameter^ param in parameters) {
+            cmd->Parameters->Add(param);
+        }
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+
 
 

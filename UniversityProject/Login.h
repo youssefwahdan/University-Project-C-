@@ -1,5 +1,7 @@
 #include "MainForm.h"
 #include "StudentMainForm.h"
+#using <System.Configuration.dll>
+
 #pragma once
 namespace UniversityProject {
 
@@ -8,7 +10,9 @@ namespace UniversityProject {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
+	using namespace System::Configuration;
 
 	/// <summary>
 	/// Summary for Login
@@ -19,6 +23,8 @@ namespace UniversityProject {
 		Login(void)
 		{
 			InitializeComponent();
+			db = gcnew Database(GetConnectionString());
+
 			//
 			//TODO: Add the constructor code here
 			//
@@ -42,6 +48,7 @@ namespace UniversityProject {
 		System::Windows::Forms::Label^ label3;
 		System::Windows::Forms::TextBox^ password;
 		System::Windows::Forms::Button^ button1;
+		Database^ db;
 
 	private:
 		/// <summary>
@@ -152,32 +159,53 @@ namespace UniversityProject {
 	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ user = this->username->Text;
 		String^ pass = this->password->Text;
+		SqlConnection^ conn = gcnew SqlConnection(GetConnectionString());
+		try {
+			conn->Open(); // Must open before using
 
-		if (user == "admin" && pass == "123") {
+
+		String^ query = "SELECT Role, StudentID, ProfessorID FROM Users WHERE Username=@u AND Password=@p";
+		SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+		cmd->Parameters->AddWithValue("@u", user);
+		cmd->Parameters->AddWithValue("@p", pass);
+
+		SqlDataReader^ reader = cmd->ExecuteReader();
+		if (reader->Read()) {
+			String^ role = reader["Role"]->ToString();
+			if (role == "Student") {
+				int studentId = Convert::ToInt32(reader["StudentID"]);
 			// Hide login window
 			this->Hide();
 
-			// Show main form
-			MainForm^ main = gcnew MainForm();
-			main->ShowDialog();
-
-			// Close login after main form ends
-			this->Close();
-		}
-		else if (user == "student" && pass == "123") {
-			// Hide login window
-			this->Hide();
-
+			StudentMainForm^ student = gcnew StudentMainForm(studentId);
 			// Show student main form
-			StudentMainForm^ student = gcnew StudentMainForm();
 			student->ShowDialog();
 
 			// Close login after main form ends
 			this->Close();
+			}
+			else if (role == "Professor") {
+				int professorId = Convert::ToInt32(reader["ProfessorID"]);
+				// Load professor dashboard
+			}
+			else {
+				this->Hide();
+				int adminId = Convert::ToInt32(reader["ProfessorID"]);
+				// Show main form
+				MainForm^ main = gcnew MainForm(adminId);
+				main->ShowDialog();
+			}
 		}
 		else {
-			MessageBox::Show("Invalid username or password!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			System::Windows::Forms::MessageBox::Show("Invalid login");
 		}
+
+		reader->Close();
+		conn->Close(); // Always close after use
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Error: " + ex->Message);
+	}
 	}
 	System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
 		label1->Left = (this->ClientSize.Width - label1->Width) / 2;
@@ -186,6 +214,11 @@ namespace UniversityProject {
 		label3->Left = (this->ClientSize.Width - password->Width) / 2;
 		password->Left = (this->ClientSize.Width - password->Width) / 2;
 		button1->Left = (this->ClientSize.Width - button1->Width) / 2;
+	}
+	System::String^ GetConnectionString()
+	{
+		// System::Configuration::ConfigurationManager is in System.Configuration.dll
+		return System::Configuration::ConfigurationManager::ConnectionStrings["UniversityDb"]->ConnectionString;
 	}
 };
 

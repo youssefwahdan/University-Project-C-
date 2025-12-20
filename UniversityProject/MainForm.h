@@ -1,8 +1,8 @@
 
 #using <System.Configuration.dll>
-#include "SubjectForm.h"
-#include "GradeForm.h"
-#include "StudentForm.h"
+#include "SubjectControl.h"
+#include "GradeControl.h"
+#include "StudentControl.h"
 #pragma once
 using namespace System::Windows::Forms;
 using namespace System::Configuration;
@@ -10,10 +10,11 @@ namespace UniversityProject {
     public ref class MainForm : public System::Windows::Forms::Form
     {
     public:
-        MainForm(void)
+        MainForm(int id)
         {
             InitializeComponent();
             db = gcnew Database(GetConnectionString());
+            AdminID = id;
 
         }
 
@@ -29,33 +30,40 @@ namespace UniversityProject {
         System::Windows::Forms::Button^ btnSubjects;
         System::Windows::Forms::Button^ btnGrades;
         System::Windows::Forms::Button^ btnStudents;
-        System::Windows::Forms::Label^ label1;
+        System::Windows::Forms::Label^ welcomeLabel;
         System::Windows::Forms::Button^ btnLogout;
-        System::ComponentModel::IContainer^ components;
+    private: System::Windows::Forms::Panel^ sidebarPanel;
+    private: System::Windows::Forms::Panel^ sectionsPanel;
+    private: System::Windows::Forms::Panel^ navbar;
+		   int AdminID;
+           System::ComponentModel::IContainer^ components;
 
 
-        void InitializeComponent(void)
+        void InitializeComponent()
         {
             this->btnSubjects = (gcnew System::Windows::Forms::Button());
             this->btnGrades = (gcnew System::Windows::Forms::Button());
             this->btnStudents = (gcnew System::Windows::Forms::Button());
-            this->label1 = (gcnew System::Windows::Forms::Label());
+            this->welcomeLabel = (gcnew System::Windows::Forms::Label());
             this->btnLogout = (gcnew System::Windows::Forms::Button());
+            this->sidebarPanel = (gcnew System::Windows::Forms::Panel());
+            this->sectionsPanel = (gcnew System::Windows::Forms::Panel());
+            this->navbar = (gcnew System::Windows::Forms::Panel());
+            this->sidebarPanel->SuspendLayout();
+            this->navbar->SuspendLayout();
             this->SuspendLayout();
             // 
             // btnSubjects
             // 
             this->btnSubjects->BackColor = System::Drawing::Color::OliveDrab;
             this->btnSubjects->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnSubjects->Font = (gcnew System::Drawing::Font(L"Segoe UI", 22.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->btnSubjects->Location = System::Drawing::Point(12, 252);
+            this->btnSubjects->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnSubjects->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnSubjects->Location = System::Drawing::Point(10, 72);
             this->btnSubjects->Name = L"btnSubjects";
-            this->btnSubjects->Padding = System::Windows::Forms::Padding(16, 0, 0, 0);
-            this->btnSubjects->Size = System::Drawing::Size(677, 120);
+            this->btnSubjects->Size = System::Drawing::Size(180, 52);
             this->btnSubjects->TabIndex = 1;
-            this->btnSubjects->Text = L"Manage Subjects";
-            this->btnSubjects->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+            this->btnSubjects->Text = L"Subjects";
             this->btnSubjects->UseVisualStyleBackColor = false;
             this->btnSubjects->Click += gcnew System::EventHandler(this, &MainForm::btnSubjects_Click);
             // 
@@ -63,15 +71,13 @@ namespace UniversityProject {
             // 
             this->btnGrades->BackColor = System::Drawing::Color::DarkSlateGray;
             this->btnGrades->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnGrades->Font = (gcnew System::Drawing::Font(L"Segoe UI", 22.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->btnGrades->Location = System::Drawing::Point(12, 378);
+            this->btnGrades->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnGrades->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnGrades->Location = System::Drawing::Point(10, 20);
             this->btnGrades->Name = L"btnGrades";
-            this->btnGrades->Padding = System::Windows::Forms::Padding(16, 0, 0, 0);
-            this->btnGrades->Size = System::Drawing::Size(677, 120);
+            this->btnGrades->Size = System::Drawing::Size(180, 52);
             this->btnGrades->TabIndex = 2;
-            this->btnGrades->Text = L"Manage Grades";
-            this->btnGrades->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+            this->btnGrades->Text = L"Grades";
             this->btnGrades->UseVisualStyleBackColor = false;
             this->btnGrades->Click += gcnew System::EventHandler(this, &MainForm::btnGrades_Click);
             // 
@@ -79,81 +85,115 @@ namespace UniversityProject {
             // 
             this->btnStudents->BackColor = System::Drawing::Color::Orange;
             this->btnStudents->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnStudents->Font = (gcnew System::Drawing::Font(L"Segoe UI", 22.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->btnStudents->Location = System::Drawing::Point(12, 126);
+            this->btnStudents->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnStudents->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnStudents->Location = System::Drawing::Point(10, 124);
             this->btnStudents->Name = L"btnStudents";
-            this->btnStudents->Padding = System::Windows::Forms::Padding(16, 0, 0, 0);
-            this->btnStudents->Size = System::Drawing::Size(677, 120);
+            this->btnStudents->Size = System::Drawing::Size(180, 52);
             this->btnStudents->TabIndex = 0;
-            this->btnStudents->Text = L"Manage Students";
-            this->btnStudents->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+            this->btnStudents->Text = L"Students";
             this->btnStudents->UseVisualStyleBackColor = false;
             this->btnStudents->Click += gcnew System::EventHandler(this, &MainForm::btnStudents_Click);
             // 
-            // label1
+            // welcomeLabel
             // 
-            this->label1->AutoSize = true;
-            this->label1->BackColor = System::Drawing::Color::Transparent;
-            this->label1->Font = (gcnew System::Drawing::Font(L"Segoe Script", 24, System::Drawing::FontStyle::Bold));
-            this->label1->ForeColor = System::Drawing::Color::Black;
-            this->label1->Location = System::Drawing::Point(12, 23);
-            this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(398, 67);
-            this->label1->TabIndex = 3;
-            this->label1->Text = L"Welcome, Admin";
+            this->welcomeLabel->AutoSize = true;
+            this->welcomeLabel->BackColor = System::Drawing::Color::Transparent;
+            this->welcomeLabel->Dock = System::Windows::Forms::DockStyle::Left;
+            this->welcomeLabel->Font = (gcnew System::Drawing::Font(L"Segoe Script", 12, System::Drawing::FontStyle::Bold));
+            this->welcomeLabel->ForeColor = System::Drawing::Color::Black;
+            this->welcomeLabel->Location = System::Drawing::Point(0, 0);
+            this->welcomeLabel->Name = L"welcomeLabel";
+            this->welcomeLabel->Size = System::Drawing::Size(0, 33);
+            this->welcomeLabel->TabIndex = 3;
             // 
             // btnLogout
             // 
             this->btnLogout->BackColor = System::Drawing::Color::Red;
             this->btnLogout->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnLogout->Dock = System::Windows::Forms::DockStyle::Right;
             this->btnLogout->Font = (gcnew System::Drawing::Font(L"Segoe UI", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->btnLogout->Location = System::Drawing::Point(670, 12);
+            this->btnLogout->Location = System::Drawing::Point(643, 0);
             this->btnLogout->Name = L"btnLogout";
-            this->btnLogout->Size = System::Drawing::Size(100, 40);
+            this->btnLogout->Size = System::Drawing::Size(75, 40);
             this->btnLogout->TabIndex = 4;
             this->btnLogout->Text = L"Logout";
             this->btnLogout->UseVisualStyleBackColor = false;
             this->btnLogout->Click += gcnew System::EventHandler(this, &MainForm::btnLogout_Click);
             // 
+            // sidebarPanel
+            // 
+            this->sidebarPanel->BackColor = System::Drawing::Color::DarkGray;
+            this->sidebarPanel->Controls->Add(this->btnStudents);
+            this->sidebarPanel->Controls->Add(this->btnSubjects);
+            this->sidebarPanel->Controls->Add(this->btnGrades);
+            this->sidebarPanel->Dock = System::Windows::Forms::DockStyle::Left;
+            this->sidebarPanel->Location = System::Drawing::Point(0, 0);
+            this->sidebarPanel->Name = L"sidebarPanel";
+            this->sidebarPanel->Padding = System::Windows::Forms::Padding(10, 20, 10, 0);
+            this->sidebarPanel->Size = System::Drawing::Size(200, 561);
+            this->sidebarPanel->TabIndex = 5;
+            // 
+            // sectionsPanel
+            // 
+            this->sectionsPanel->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->sectionsPanel->ForeColor = System::Drawing::Color::Black;
+            this->sectionsPanel->Location = System::Drawing::Point(200, 40);
+            this->sectionsPanel->Name = L"sectionsPanel";
+            this->sectionsPanel->Size = System::Drawing::Size(718, 521);
+            this->sectionsPanel->TabIndex = 6;
+            // 
+            // navbar
+            // 
+            this->navbar->Controls->Add(this->btnLogout);
+            this->navbar->Controls->Add(this->welcomeLabel);
+            this->navbar->Dock = System::Windows::Forms::DockStyle::Top;
+            this->navbar->Location = System::Drawing::Point(200, 0);
+            this->navbar->Name = L"navbar";
+            this->navbar->Size = System::Drawing::Size(718, 40);
+            this->navbar->TabIndex = 6;
+            // 
             // MainForm
             // 
-            this->ClientSize = System::Drawing::Size(782, 553);
-            this->Controls->Add(this->btnLogout);
-            this->Controls->Add(this->label1);
-            this->Controls->Add(this->btnStudents);
-            this->Controls->Add(this->btnSubjects);
-            this->Controls->Add(this->btnGrades);
+            this->ClientSize = System::Drawing::Size(918, 561);
+            this->Controls->Add(this->sectionsPanel);
+            this->Controls->Add(this->navbar);
+            this->Controls->Add(this->sidebarPanel);
             this->ForeColor = System::Drawing::Color::WhiteSmoke;
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
             this->Name = L"MainForm";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+            this->sidebarPanel->ResumeLayout(false);
+            this->navbar->ResumeLayout(false);
+            this->navbar->PerformLayout();
             this->ResumeLayout(false);
-            this->PerformLayout();
 
         }
 
         void btnStudents_Click(System::Object^ sender, System::EventArgs^ e)
         {
-            this->Hide();
-            StudentForm^ form = gcnew StudentForm(this);
-            form->ShowDialog();
+			sectionsPanel->Controls->Clear();
+            StudentControl^ form = gcnew StudentControl();
+			form->Dock = DockStyle::Fill;
+			sectionsPanel->Controls->Add(form);
         }
 
         void btnSubjects_Click(System::Object^ sender, System::EventArgs^ e)
         {
         
-            this->Hide();
-            SubjectForm^ form = gcnew SubjectForm(this);
-            form->ShowDialog();
+            sectionsPanel->Controls->Clear();
+            SubjectControl^ form = gcnew SubjectControl();
+            form->Dock = DockStyle::Fill;
+            sectionsPanel->Controls->Add(form);
         }
 
         void btnGrades_Click(System::Object^ sender, System::EventArgs^ e)
         {
-            this->Hide();
-            GradeForm^ form = gcnew GradeForm(this);
-            form->ShowDialog();
+            sectionsPanel->Controls->Clear();
+            GradeControl^ form = gcnew GradeControl();
+            form->Dock = DockStyle::Fill;
+            sectionsPanel->Controls->Add(form);
         }
         //void btnGrades_Click(System::Object^ sender, System::EventArgs^ e)
         //{

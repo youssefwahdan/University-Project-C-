@@ -114,28 +114,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttendanceControl.cpp" />
+    <ClCompile Include="CoursesGradesControl.cpp" />
     <ClCompile Include="Database.cpp" />
-    <ClCompile Include="GradeForm.cpp" />
+    <ClCompile Include="DetailedGradesForm.cpp" />
+    <ClCompile Include="GradeControl.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="StudentMainForm.cpp" />
     <ClCompile Include="Models.cpp" />
     <ClCompile Include="Program.cpp" />
-    <ClCompile Include="StudentForm.cpp" />
-    <ClCompile Include="SubjectForm.cpp" />
+    <ClCompile Include="StudentControl.cpp" />
+    <ClCompile Include="StudentProfileControl.cpp" />
+    <ClCompile Include="SubjectControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttendanceControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CoursesGradesControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="Database.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="GradeForm.h">
+    <ClInclude Include="DetailedGradesForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="GradeControl.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Login.h">
@@ -150,16 +164,25 @@
     <ClInclude Include="Models.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="StudentForm.h">
+    <ClInclude Include="StudentControl.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="SubjectForm.h">
+    <ClInclude Include="StudentProfileControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="SubjectControl.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GradeForm.resx">
-      <DependentUpon>GradeForm.h</DependentUpon>
+    <EmbeddedResource Include="CoursesGradesControl.resx">
+      <DependentUpon>CoursesGradesControl.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedGradesForm.resx">
+      <DependentUpon>DetailedGradesForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GradeControl.resx">
+      <DependentUpon>GradeControl.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
@@ -170,11 +193,14 @@
     <EmbeddedResource Include="StudentMainForm.resx">
       <DependentUpon>StudentMainForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StudentForm.resx">
-      <DependentUpon>StudentForm.h</DependentUpon>
+    <EmbeddedResource Include="StudentControl.resx">
+      <DependentUpon>StudentControl.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubjectForm.resx">
-      <DependentUpon>SubjectForm.h</DependentUpon>
+    <EmbeddedResource Include="StudentProfileControl.resx">
+      <DependentUpon>StudentProfileControl.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubjectControl.resx">
+      <DependentUpon>SubjectControl.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
