@@ -15,8 +15,8 @@ public:
     Database(String^ connStr);
 
     DataTable^ GetStudents();
-    bool AddStudent(String^ name, String^ section, int year);
-    bool UpdateStudent(int studentId, String^ name, String^ section, int year);
+    bool AddStudent(String^ firstName, String^ lastName,String^ UniversityID, String^ gender);
+    bool UpdateStudent(int studentId, String^ firstName, String^ lastName, String^ UniversityID, String^ gender);
     bool DeleteStudent(int studentId);
 	bool AddOrUpdateGrade(int studentId, int subjectId, String^ assignment1, String^ assignment2, double finalGrade);
 	bool DeleteGrade(int gradeId);
@@ -52,6 +52,7 @@ public:
 	SqlDataReader^ LoadGrades(int id);
 	SqlDataReader^ LoadGradeBreakdown(int id);
 	SqlDataReader^ ExecuteReader(String^ query, array<SqlParameter^>^ parameters);
+	SqlDataReader^ LoadProfessorData(int id);
     bool AddSubject(String^ name, int yearOffered);
     // ... More methods for Grades, etc.
 };

@@ -1,5 +1,6 @@
 #include "MainForm.h"
 #include "StudentMainForm.h"
+#include "ProfessorMainForm.h"
 #using <System.Configuration.dll>
 
 #pragma once
@@ -164,7 +165,7 @@ namespace UniversityProject {
 			conn->Open(); // Must open before using
 
 
-		String^ query = "SELECT Role, StudentID, ProfessorID FROM Users WHERE Username=@u AND Password=@p";
+		String^ query = "SELECT * FROM Users WHERE Username=@u AND Password=@p";
 		SqlCommand^ cmd = gcnew SqlCommand(query, conn);
 		cmd->Parameters->AddWithValue("@u", user);
 		cmd->Parameters->AddWithValue("@p", pass);
@@ -185,15 +186,23 @@ namespace UniversityProject {
 			this->Close();
 			}
 			else if (role == "Professor") {
+				this->Hide();
+
 				int professorId = Convert::ToInt32(reader["ProfessorID"]);
-				// Load professor dashboard
+				// Show main form
+				ProfessorMainForm^ main = gcnew ProfessorMainForm(professorId);
+				main->ShowDialog();
+				this->Close();
+
 			}
 			else {
 				this->Hide();
-				int adminId = Convert::ToInt32(reader["ProfessorID"]);
+				int adminId = Convert::ToInt32(reader["AdminID"]);
 				// Show main form
 				MainForm^ main = gcnew MainForm(adminId);
 				main->ShowDialog();
+				this->Close();
+
 			}
 		}
 		else {

@@ -24,13 +24,10 @@
     <ClCompile Include="Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GradeControl.cpp">
+    <ClCompile Include="FeeControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StudentMainForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Models.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Program.cpp">
@@ -39,7 +36,7 @@
     <ClCompile Include="StudentControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SubjectControl.cpp">
+    <ClCompile Include="AdminProfileControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StudentProfileControl.cpp">
@@ -54,6 +51,24 @@
     <ClCompile Include="AttendanceControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GPAControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorMainForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorCoursesControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorProfileControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorAttendanceControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentFeeControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -65,19 +80,16 @@
     <ClInclude Include="Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GradeControl.h">
+    <ClInclude Include="FeeControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StudentMainForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StudentControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SubjectControl.h">
+    <ClInclude Include="AdminProfileControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StudentProfileControl.h">
@@ -90,6 +102,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AttendanceControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GPAControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorMainForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorCoursesControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorProfileControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorAttendanceControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentFeeControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

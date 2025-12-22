@@ -11,20 +11,19 @@ using namespace System::Drawing;
 namespace UniversityProject {
 
 	/// <summary>
-	/// Summary for StudentProfileControl
+	/// Summary for ProfessorProfileControl
 	/// </summary>
-	public ref class StudentProfileControl : public System::Windows::Forms::UserControl
+	public ref class ProfessorProfileControl : public System::Windows::Forms::UserControl
 	{
 	public:
-		StudentProfileControl(String^ FirstName, String^ LastName, String^ DepartmentName, String^ FacultyName, String^ AcademicLevelName, String^ UniversityID, DateTime AdmissionDate)
+		ProfessorProfileControl(String^ FirstName, String^ LastName, String^ DepartmentName, String^ FacultyName, String^ Code, DateTime HireDate)
 		{
 			InitializeComponent();
 			fullNameValue->Text = FirstName + " " + LastName;
-			universityIDValue->Text = UniversityID;
+			CodeValue->Text = Code;
 			departmentValue->Text = DepartmentName;
 			facultyValue->Text = FacultyName;
-			academicLevelValue->Text = AcademicLevelName;
-			admissionDateValue->Text = AdmissionDate.ToString("dd/MM/yyyy");
+			HireDateValue->Text = HireDate.ToString("dd/MM/yyyy");
 			//
 			//TODO: Add the constructor code here
 			//
@@ -34,7 +33,7 @@ namespace UniversityProject {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~StudentProfileControl()
+		~ProfessorProfileControl()
 		{
 			if (components)
 			{
@@ -43,16 +42,14 @@ namespace UniversityProject {
 		}
 	private: System::Windows::Forms::Label^ fullNameLabel;
 	private: System::Windows::Forms::Label^ fullNameValue;
-	private: System::Windows::Forms::Label^ UniversityIDLabel;
-	private: System::Windows::Forms::Label^ universityIDValue;
+	private: System::Windows::Forms::Label^ CodeLabel;
+	private: System::Windows::Forms::Label^ CodeValue;
 	private: System::Windows::Forms::Label^ departmentLabel;
 	private: System::Windows::Forms::Label^ departmentValue;
 	private: System::Windows::Forms::Label^ facultyLabel;
 	private: System::Windows::Forms::Label^ facultyValue;
-	private: System::Windows::Forms::Label^ academicLevelLabel;
-	private: System::Windows::Forms::Label^ academicLevelValue;
-	private: System::Windows::Forms::Label^ admissionDateLabel;
-	private: System::Windows::Forms::Label^ admissionDateValue;
+	private: System::Windows::Forms::Label^ HireDateLabel;
+	private: System::Windows::Forms::Label^ HireDateValue;
 
 
 
@@ -76,16 +73,14 @@ namespace UniversityProject {
 		{
 			this->fullNameLabel = (gcnew System::Windows::Forms::Label());
 			this->fullNameValue = (gcnew System::Windows::Forms::Label());
-			this->UniversityIDLabel = (gcnew System::Windows::Forms::Label());
-			this->universityIDValue = (gcnew System::Windows::Forms::Label());
+			this->CodeLabel = (gcnew System::Windows::Forms::Label());
+			this->CodeValue = (gcnew System::Windows::Forms::Label());
 			this->departmentLabel = (gcnew System::Windows::Forms::Label());
 			this->departmentValue = (gcnew System::Windows::Forms::Label());
 			this->facultyLabel = (gcnew System::Windows::Forms::Label());
 			this->facultyValue = (gcnew System::Windows::Forms::Label());
-			this->academicLevelLabel = (gcnew System::Windows::Forms::Label());
-			this->academicLevelValue = (gcnew System::Windows::Forms::Label());
-			this->admissionDateLabel = (gcnew System::Windows::Forms::Label());
-			this->admissionDateValue = (gcnew System::Windows::Forms::Label());
+			this->HireDateLabel = (gcnew System::Windows::Forms::Label());
+			this->HireDateValue = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// fullNameLabel
@@ -110,27 +105,27 @@ namespace UniversityProject {
 			this->fullNameValue->Size = System::Drawing::Size(0, 32);
 			this->fullNameValue->TabIndex = 1;
 			// 
-			// UniversityIDLabel
+			// CodeLabel
 			// 
-			this->UniversityIDLabel->AutoSize = true;
-			this->UniversityIDLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
-			this->UniversityIDLabel->Location = System::Drawing::Point(22, 69);
-			this->UniversityIDLabel->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
-			this->UniversityIDLabel->Name = L"UniversityIDLabel";
-			this->UniversityIDLabel->Size = System::Drawing::Size(162, 32);
-			this->UniversityIDLabel->TabIndex = 2;
-			this->UniversityIDLabel->Text = L"University ID";
+			this->CodeLabel->AutoSize = true;
+			this->CodeLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
+			this->CodeLabel->Location = System::Drawing::Point(22, 69);
+			this->CodeLabel->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
+			this->CodeLabel->Name = L"CodeLabel";
+			this->CodeLabel->Size = System::Drawing::Size(72, 32);
+			this->CodeLabel->TabIndex = 2;
+			this->CodeLabel->Text = L"Code";
 			// 
-			// universityIDValue
+			// CodeValue
 			// 
-			this->universityIDValue->AutoSize = true;
-			this->universityIDValue->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
-			this->universityIDValue->ForeColor = System::Drawing::Color::ForestGreen;
-			this->universityIDValue->Location = System::Drawing::Point(281, 68);
-			this->universityIDValue->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
-			this->universityIDValue->Name = L"universityIDValue";
-			this->universityIDValue->Size = System::Drawing::Size(0, 32);
-			this->universityIDValue->TabIndex = 3;
+			this->CodeValue->AutoSize = true;
+			this->CodeValue->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
+			this->CodeValue->ForeColor = System::Drawing::Color::ForestGreen;
+			this->CodeValue->Location = System::Drawing::Point(281, 68);
+			this->CodeValue->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
+			this->CodeValue->Name = L"CodeValue";
+			this->CodeValue->Size = System::Drawing::Size(0, 32);
+			this->CodeValue->TabIndex = 3;
 			// 
 			// departmentLabel
 			// 
@@ -176,63 +171,42 @@ namespace UniversityProject {
 			this->facultyValue->Size = System::Drawing::Size(0, 32);
 			this->facultyValue->TabIndex = 7;
 			// 
-			// academicLevelLabel
+			// HireDateLabel
 			// 
-			this->academicLevelLabel->AutoSize = true;
-			this->academicLevelLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
-			this->academicLevelLabel->Location = System::Drawing::Point(22, 229);
-			this->academicLevelLabel->Name = L"academicLevelLabel";
-			this->academicLevelLabel->Size = System::Drawing::Size(190, 32);
-			this->academicLevelLabel->TabIndex = 8;
-			this->academicLevelLabel->Text = L"Academic Level";
+			this->HireDateLabel->AutoSize = true;
+			this->HireDateLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
+			this->HireDateLabel->Location = System::Drawing::Point(22, 231);
+			this->HireDateLabel->Name = L"HireDateLabel";
+			this->HireDateLabel->Size = System::Drawing::Size(122, 32);
+			this->HireDateLabel->TabIndex = 10;
+			this->HireDateLabel->Text = L"Hire Date";
 			// 
-			// academicLevelValue
+			// HireDateValue
 			// 
-			this->academicLevelValue->AutoSize = true;
-			this->academicLevelValue->ForeColor = System::Drawing::Color::ForestGreen;
-			this->academicLevelValue->Location = System::Drawing::Point(280, 228);
-			this->academicLevelValue->Name = L"academicLevelValue";
-			this->academicLevelValue->Size = System::Drawing::Size(0, 32);
-			this->academicLevelValue->TabIndex = 9;
+			this->HireDateValue->AutoSize = true;
+			this->HireDateValue->ForeColor = System::Drawing::Color::ForestGreen;
+			this->HireDateValue->Location = System::Drawing::Point(281, 230);
+			this->HireDateValue->Name = L"HireDateValue";
+			this->HireDateValue->Size = System::Drawing::Size(0, 32);
+			this->HireDateValue->TabIndex = 11;
 			// 
-			// admissionDateLabel
-			// 
-			this->admissionDateLabel->AutoSize = true;
-			this->admissionDateLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
-			this->admissionDateLabel->Location = System::Drawing::Point(22, 284);
-			this->admissionDateLabel->Name = L"admissionDateLabel";
-			this->admissionDateLabel->Size = System::Drawing::Size(194, 32);
-			this->admissionDateLabel->TabIndex = 10;
-			this->admissionDateLabel->Text = L"Admission Date";
-			// 
-			// admissionDateValue
-			// 
-			this->admissionDateValue->AutoSize = true;
-			this->admissionDateValue->ForeColor = System::Drawing::Color::ForestGreen;
-			this->admissionDateValue->Location = System::Drawing::Point(281, 283);
-			this->admissionDateValue->Name = L"admissionDateValue";
-			this->admissionDateValue->Size = System::Drawing::Size(0, 32);
-			this->admissionDateValue->TabIndex = 11;
-			// 
-			// StudentProfileControl
+			// ProfessorProfileControl
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(13, 31);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->Controls->Add(this->admissionDateValue);
-			this->Controls->Add(this->admissionDateLabel);
-			this->Controls->Add(this->academicLevelValue);
-			this->Controls->Add(this->academicLevelLabel);
+			this->Controls->Add(this->HireDateValue);
+			this->Controls->Add(this->HireDateLabel);
 			this->Controls->Add(this->facultyValue);
 			this->Controls->Add(this->facultyLabel);
 			this->Controls->Add(this->departmentValue);
 			this->Controls->Add(this->departmentLabel);
-			this->Controls->Add(this->universityIDValue);
-			this->Controls->Add(this->UniversityIDLabel);
+			this->Controls->Add(this->CodeValue);
+			this->Controls->Add(this->CodeLabel);
 			this->Controls->Add(this->fullNameValue);
 			this->Controls->Add(this->fullNameLabel);
 			this->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
 			this->Margin = System::Windows::Forms::Padding(5, 6, 5, 6);
-			this->Name = L"StudentProfileControl";
+			this->Name = L"ProfessorProfileControl";
 			this->Size = System::Drawing::Size(982, 926);
 			this->ResumeLayout(false);
 			this->PerformLayout();

@@ -1,7 +1,7 @@
 
 #using <System.Configuration.dll>
-#include "SubjectControl.h"
-#include "GradeControl.h"
+#include "AdminProfileControl.h"
+#include "FeeControl.h"
 #include "StudentControl.h"
 #pragma once
 using namespace System::Windows::Forms;
@@ -14,8 +14,8 @@ namespace UniversityProject {
         {
             InitializeComponent();
             db = gcnew Database(GetConnectionString());
-            AdminID = id;
-
+            adminID = id;
+            LoadAdminData(id);
         }
 
     protected:
@@ -27,22 +27,29 @@ namespace UniversityProject {
 
     private:
         Database^ db;
-        System::Windows::Forms::Button^ btnSubjects;
-        System::Windows::Forms::Button^ btnGrades;
+        System::Windows::Forms::Button^ btnProfile;
+        System::Windows::Forms::Button^ btnFees;
         System::Windows::Forms::Button^ btnStudents;
         System::Windows::Forms::Label^ welcomeLabel;
         System::Windows::Forms::Button^ btnLogout;
     private: System::Windows::Forms::Panel^ sidebarPanel;
     private: System::Windows::Forms::Panel^ sectionsPanel;
     private: System::Windows::Forms::Panel^ navbar;
-		   int AdminID;
+		   int adminID;
            System::ComponentModel::IContainer^ components;
+		   String^ FirstName;
+		   String^ LastName;
+           String^ Code;
+           String^ Email;
+           String^ Phone;
+		   DateTime HireDate;
+
 
 
         void InitializeComponent()
         {
-            this->btnSubjects = (gcnew System::Windows::Forms::Button());
-            this->btnGrades = (gcnew System::Windows::Forms::Button());
+            this->btnProfile = (gcnew System::Windows::Forms::Button());
+            this->btnFees = (gcnew System::Windows::Forms::Button());
             this->btnStudents = (gcnew System::Windows::Forms::Button());
             this->welcomeLabel = (gcnew System::Windows::Forms::Label());
             this->btnLogout = (gcnew System::Windows::Forms::Button());
@@ -53,33 +60,33 @@ namespace UniversityProject {
             this->navbar->SuspendLayout();
             this->SuspendLayout();
             // 
-            // btnSubjects
+            // btnProfile
             // 
-            this->btnSubjects->BackColor = System::Drawing::Color::OliveDrab;
-            this->btnSubjects->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnSubjects->Dock = System::Windows::Forms::DockStyle::Top;
-            this->btnSubjects->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
-            this->btnSubjects->Location = System::Drawing::Point(10, 72);
-            this->btnSubjects->Name = L"btnSubjects";
-            this->btnSubjects->Size = System::Drawing::Size(180, 52);
-            this->btnSubjects->TabIndex = 1;
-            this->btnSubjects->Text = L"Subjects";
-            this->btnSubjects->UseVisualStyleBackColor = false;
-            this->btnSubjects->Click += gcnew System::EventHandler(this, &MainForm::btnSubjects_Click);
+            this->btnProfile->BackColor = System::Drawing::Color::OliveDrab;
+            this->btnProfile->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnProfile->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnProfile->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnProfile->Location = System::Drawing::Point(10, 20);
+            this->btnProfile->Name = L"btnProfile";
+            this->btnProfile->Size = System::Drawing::Size(180, 50);
+            this->btnProfile->TabIndex = 1;
+            this->btnProfile->Text = L"Profile";
+            this->btnProfile->UseVisualStyleBackColor = false;
+            this->btnProfile->Click += gcnew System::EventHandler(this, &MainForm::btnProfile_Click);
             // 
-            // btnGrades
+            // btnFees
             // 
-            this->btnGrades->BackColor = System::Drawing::Color::DarkSlateGray;
-            this->btnGrades->Cursor = System::Windows::Forms::Cursors::Hand;
-            this->btnGrades->Dock = System::Windows::Forms::DockStyle::Top;
-            this->btnGrades->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
-            this->btnGrades->Location = System::Drawing::Point(10, 20);
-            this->btnGrades->Name = L"btnGrades";
-            this->btnGrades->Size = System::Drawing::Size(180, 52);
-            this->btnGrades->TabIndex = 2;
-            this->btnGrades->Text = L"Grades";
-            this->btnGrades->UseVisualStyleBackColor = false;
-            this->btnGrades->Click += gcnew System::EventHandler(this, &MainForm::btnGrades_Click);
+            this->btnFees->BackColor = System::Drawing::Color::DarkSlateGray;
+            this->btnFees->Cursor = System::Windows::Forms::Cursors::Hand;
+            this->btnFees->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnFees->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnFees->Location = System::Drawing::Point(10, 120);
+            this->btnFees->Name = L"btnFees";
+            this->btnFees->Size = System::Drawing::Size(180, 50);
+            this->btnFees->TabIndex = 2;
+            this->btnFees->Text = L"Fees";
+            this->btnFees->UseVisualStyleBackColor = false;
+            this->btnFees->Click += gcnew System::EventHandler(this, &MainForm::btnFees_Click);
             // 
             // btnStudents
             // 
@@ -87,9 +94,9 @@ namespace UniversityProject {
             this->btnStudents->Cursor = System::Windows::Forms::Cursors::Hand;
             this->btnStudents->Dock = System::Windows::Forms::DockStyle::Top;
             this->btnStudents->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
-            this->btnStudents->Location = System::Drawing::Point(10, 124);
+            this->btnStudents->Location = System::Drawing::Point(10, 70);
             this->btnStudents->Name = L"btnStudents";
-            this->btnStudents->Size = System::Drawing::Size(180, 52);
+            this->btnStudents->Size = System::Drawing::Size(180, 50);
             this->btnStudents->TabIndex = 0;
             this->btnStudents->Text = L"Students";
             this->btnStudents->UseVisualStyleBackColor = false;
@@ -125,9 +132,9 @@ namespace UniversityProject {
             // sidebarPanel
             // 
             this->sidebarPanel->BackColor = System::Drawing::Color::DarkGray;
+            this->sidebarPanel->Controls->Add(this->btnFees);
             this->sidebarPanel->Controls->Add(this->btnStudents);
-            this->sidebarPanel->Controls->Add(this->btnSubjects);
-            this->sidebarPanel->Controls->Add(this->btnGrades);
+            this->sidebarPanel->Controls->Add(this->btnProfile);
             this->sidebarPanel->Dock = System::Windows::Forms::DockStyle::Left;
             this->sidebarPanel->Location = System::Drawing::Point(0, 0);
             this->sidebarPanel->Name = L"sidebarPanel";
@@ -170,7 +177,33 @@ namespace UniversityProject {
             this->ResumeLayout(false);
 
         }
+        void LoadAdminData(int id)
+        {
+            SqlConnection^ conn = gcnew SqlConnection(db->connectionString);
 
+            try {
+                SqlCommand^ command = gcnew SqlCommand("SELECT * FROM Admin WHERE AdminID = @id", conn);
+                command->Parameters->AddWithValue("@id", id);
+				conn->Open();
+                SqlDataReader^ reader = command->ExecuteReader();
+                if (reader->Read()) {
+                    FirstName = reader["FirstName"]->ToString();
+                    LastName = reader["LastName"]->ToString();
+					Code = reader["Code"]->ToString();
+					Email = reader["Email"]->ToString();
+					Phone = reader["Phone"]->ToString();
+					HireDate = DateTime::Parse(reader["HireDate"]->ToString());
+                    welcomeLabel->Text = "Welcome, " + FirstName + " " + LastName;
+                }
+                reader->Close();
+            }
+            catch (Exception^ ex) {
+                MessageBox::Show("Error loading admin data: " + ex->Message);
+            }
+            finally {
+                conn->Close();
+            }
+		}
         void btnStudents_Click(System::Object^ sender, System::EventArgs^ e)
         {
 			sectionsPanel->Controls->Clear();
@@ -179,39 +212,22 @@ namespace UniversityProject {
 			sectionsPanel->Controls->Add(form);
         }
 
-        void btnSubjects_Click(System::Object^ sender, System::EventArgs^ e)
+        void btnProfile_Click(System::Object^ sender, System::EventArgs^ e)
         {
         
             sectionsPanel->Controls->Clear();
-            SubjectControl^ form = gcnew SubjectControl();
+            AdminProfileControl^ form = gcnew AdminProfileControl(FirstName,LastName, Code,Phone,Email,HireDate);
             form->Dock = DockStyle::Fill;
             sectionsPanel->Controls->Add(form);
         }
 
-        void btnGrades_Click(System::Object^ sender, System::EventArgs^ e)
+        void btnFees_Click(System::Object^ sender, System::EventArgs^ e)
         {
             sectionsPanel->Controls->Clear();
-            GradeControl^ form = gcnew GradeControl();
+            FeeControl^ form = gcnew FeeControl();
             form->Dock = DockStyle::Fill;
             sectionsPanel->Controls->Add(form);
         }
-        //void btnGrades_Click(System::Object^ sender, System::EventArgs^ e)
-        //{
-        //    try
-        //    {
-        //        SqlConnection^ conn = gcnew SqlConnection(Database::connectionString);
-
-        //        conn->Open();
-        //        conn->Close();
-
-        //        MessageBox::Show("Database connection succeed: " + Database::connectionString);
-
-        //    }
-        //    catch (Exception^ ex)
-        //    {
-        //        MessageBox::Show("Database connection failed: " + ex->Message);
-        //    }
-        //}
         String^ GetConnectionString()
         {
             // Use System::Configuration::ConfigurationManager to access connection strings
@@ -219,13 +235,9 @@ namespace UniversityProject {
         }
 
         System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^ e) {
-         //   // Hide main window
-         //   this->Hide();
-         //   // Show login form
-         //   login->ShowDialog();
-         //   // Close main form after login form ends
-	        //this->Close();
+
 	        Application::Restart();
         }
+
 };
 }

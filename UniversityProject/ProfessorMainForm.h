@@ -1,28 +1,34 @@
 
 #using <System.Configuration.dll>
-#include "StudentProfileControl.h"
-#include "CoursesGradesControl.h"
-#include "AttendanceControl.h"
 #include "GPAControl.h"
-#include "StudentFeeControl.h"
+#include "ProfessorAttendanceControl.h"
+#include "ProfessorCoursesControl.h"
+#include "ProfessorProfileControl.h"
+
+
 #pragma once
+using namespace System;
+using namespace System::Data;
+using namespace System::Data::SqlClient;
 using namespace System::Windows::Forms;
 using namespace System::Configuration;
+
+
 namespace UniversityProject {
-    public ref class StudentMainForm : public System::Windows::Forms::Form
+    public ref class ProfessorMainForm : public System::Windows::Forms::Form
     {
     public:
-        StudentMainForm(int id)
+        ProfessorMainForm(int id)
         {
             InitializeComponent();
             db = gcnew Database(GetConnectionString());
-			StudentID = id;
-            LoadStudentData();
+            ProfessorID = id;
+            LoadProfessorData();
 
         }
 
     protected:
-        ~StudentMainForm()
+        ~ProfessorMainForm()
         {
             if (components)
                 delete components;
@@ -37,28 +43,24 @@ namespace UniversityProject {
         System::Windows::Forms::Label^ welcomeLabel;
         System::Windows::Forms::Panel^ sidebarPanel;
         System::Windows::Forms::Panel^ sectionsPanel;
-        System::Windows::Forms::Panel^ navbar;   
+        System::Windows::Forms::Panel^ navbar;
         System::ComponentModel::IContainer^ components;
     public:
-		int StudentID;
-        String^ UniversityID;
-		String^ FirstName;
-		String^ LastName;
+        int ProfessorID;
+        String^ Code;
+        String^ FirstName;
+        String^ LastName;
         String^ Gender;
-		DateTime BirthDate;
+        DateTime BirthDate;
         String^ Email;
-		String^ Phone;
-		int DepartmentID;
+        String^ Phone;
+        int DepartmentID;
         String^ DepartmentName;
-		int FacultyID;
+        int FacultyID;
         String^ FacultyName;
-		DateTime AdmissionDate;
-		int AcademicLevelID;
-    private: System::Windows::Forms::Button^ btnGPA;
-    private: System::Windows::Forms::Button^ btnFees;
-    public:
+        DateTime HireDate;
+        int AcademicLevelID;
 
-    public:
         String^ AcademicLevelName;
 
 
@@ -71,10 +73,8 @@ namespace UniversityProject {
             this->welcomeLabel = (gcnew System::Windows::Forms::Label());
             this->btnLogout = (gcnew System::Windows::Forms::Button());
             this->sidebarPanel = (gcnew System::Windows::Forms::Panel());
-            this->btnGPA = (gcnew System::Windows::Forms::Button());
             this->sectionsPanel = (gcnew System::Windows::Forms::Panel());
             this->navbar = (gcnew System::Windows::Forms::Panel());
-            this->btnFees = (gcnew System::Windows::Forms::Button());
             this->sidebarPanel->SuspendLayout();
             this->navbar->SuspendLayout();
             this->SuspendLayout();
@@ -91,7 +91,7 @@ namespace UniversityProject {
             this->btnCourses->TabIndex = 1;
             this->btnCourses->Text = L"Courses";
             this->btnCourses->UseVisualStyleBackColor = false;
-            this->btnCourses->Click += gcnew System::EventHandler(this, &StudentMainForm::btnCourses_Click);
+            this->btnCourses->Click += gcnew System::EventHandler(this, &ProfessorMainForm::btnCourses_Click);
             // 
             // btnProfile
             // 
@@ -105,7 +105,7 @@ namespace UniversityProject {
             this->btnProfile->TabIndex = 2;
             this->btnProfile->Text = L"Profile";
             this->btnProfile->UseVisualStyleBackColor = false;
-            this->btnProfile->Click += gcnew System::EventHandler(this, &StudentMainForm::btnProfile_Click);
+            this->btnProfile->Click += gcnew System::EventHandler(this, &ProfessorMainForm::btnProfile_Click);
             // 
             // btnAttendance
             // 
@@ -119,7 +119,7 @@ namespace UniversityProject {
             this->btnAttendance->TabIndex = 0;
             this->btnAttendance->Text = L"Attendance";
             this->btnAttendance->UseVisualStyleBackColor = false;
-            this->btnAttendance->Click += gcnew System::EventHandler(this, &StudentMainForm::btnAttendance_Click);
+            this->btnAttendance->Click += gcnew System::EventHandler(this, &ProfessorMainForm::btnAttendance_Click);
             // 
             // welcomeLabel
             // 
@@ -146,13 +146,11 @@ namespace UniversityProject {
             this->btnLogout->TabIndex = 4;
             this->btnLogout->Text = L"Logout";
             this->btnLogout->UseVisualStyleBackColor = false;
-            this->btnLogout->Click += gcnew System::EventHandler(this, &StudentMainForm::btnLogout_Click);
+            this->btnLogout->Click += gcnew System::EventHandler(this, &ProfessorMainForm::btnLogout_Click);
             // 
             // sidebarPanel
             // 
             this->sidebarPanel->BackColor = System::Drawing::Color::DarkGray;
-            this->sidebarPanel->Controls->Add(this->btnFees);
-            this->sidebarPanel->Controls->Add(this->btnGPA);
             this->sidebarPanel->Controls->Add(this->btnAttendance);
             this->sidebarPanel->Controls->Add(this->btnCourses);
             this->sidebarPanel->Controls->Add(this->btnProfile);
@@ -162,20 +160,6 @@ namespace UniversityProject {
             this->sidebarPanel->Padding = System::Windows::Forms::Padding(10, 20, 10, 0);
             this->sidebarPanel->Size = System::Drawing::Size(200, 561);
             this->sidebarPanel->TabIndex = 5;
-            // 
-            // btnGPA
-            // 
-            this->btnGPA->BackColor = System::Drawing::Color::RosyBrown;
-            this->btnGPA->Dock = System::Windows::Forms::DockStyle::Top;
-            this->btnGPA->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
-            this->btnGPA->ForeColor = System::Drawing::Color::White;
-            this->btnGPA->Location = System::Drawing::Point(10, 170);
-            this->btnGPA->Name = L"btnGPA";
-            this->btnGPA->Size = System::Drawing::Size(180, 50);
-            this->btnGPA->TabIndex = 0;
-            this->btnGPA->Text = L"GPA";
-            this->btnGPA->UseVisualStyleBackColor = false;
-            this->btnGPA->Click += gcnew System::EventHandler(this, &StudentMainForm::btnGPA_Click);
             // 
             // sectionsPanel
             // 
@@ -196,21 +180,7 @@ namespace UniversityProject {
             this->navbar->Size = System::Drawing::Size(718, 40);
             this->navbar->TabIndex = 6;
             // 
-            // btnFees
-            // 
-            this->btnFees->BackColor = System::Drawing::Color::IndianRed;
-            this->btnFees->Dock = System::Windows::Forms::DockStyle::Top;
-            this->btnFees->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
-            this->btnFees->ForeColor = System::Drawing::Color::White;
-            this->btnFees->Location = System::Drawing::Point(10, 220);
-            this->btnFees->Name = L"btnFees";
-            this->btnFees->Size = System::Drawing::Size(180, 50);
-            this->btnFees->TabIndex = 3;
-            this->btnFees->Text = L"Fees";
-            this->btnFees->UseVisualStyleBackColor = false;
-            this->btnFees->Click += gcnew System::EventHandler(this, &StudentMainForm::btnFees_Click);
-            // 
-            // StudentMainForm
+            // ProfessorMainForm
             // 
             this->ClientSize = System::Drawing::Size(918, 561);
             this->Controls->Add(this->sectionsPanel);
@@ -218,7 +188,7 @@ namespace UniversityProject {
             this->Controls->Add(this->sidebarPanel);
             this->ForeColor = System::Drawing::Color::WhiteSmoke;
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
-            this->Name = L"StudentMainForm";
+            this->Name = L"ProfessorMainForm";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             this->sidebarPanel->ResumeLayout(false);
             this->navbar->ResumeLayout(false);
@@ -229,14 +199,14 @@ namespace UniversityProject {
 
         void btnGPA_Click(System::Object^ sender, System::EventArgs^ e) {
             sectionsPanel->Controls->Clear();
-            GPAControl^ control = gcnew GPAControl(StudentID);
+            GPAControl^ control = gcnew GPAControl(ProfessorID);
             control->Dock = DockStyle::Fill;
             sectionsPanel->Controls->Add(control);
         }
         void btnAttendance_Click(System::Object^ sender, System::EventArgs^ e)
         {
             sectionsPanel->Controls->Clear();
-            AttendanceControl^ control = gcnew AttendanceControl(StudentID);
+            ProfessorAttendanceControl^ control = gcnew ProfessorAttendanceControl(ProfessorID);
             control->Dock = DockStyle::Fill;
             sectionsPanel->Controls->Add(control);
         }
@@ -246,7 +216,7 @@ namespace UniversityProject {
 
             sectionsPanel->Controls->Clear();
 
-            CoursesGradesControl^ control = gcnew CoursesGradesControl(StudentID);
+            ProfessorCoursesControl^ control = gcnew ProfessorCoursesControl(ProfessorID);
             control->Dock = DockStyle::Fill;
             sectionsPanel->Controls->Add(control);
         }
@@ -255,9 +225,8 @@ namespace UniversityProject {
         {
             LoadDepartmentData();
             LoadFacultyData();
-            LoadAcademicLevelData();
             sectionsPanel->Controls->Clear();
-            StudentProfileControl^ control = gcnew StudentProfileControl(FirstName, LastName, DepartmentName, FacultyName, AcademicLevelName, UniversityID, AdmissionDate);
+            ProfessorProfileControl^ control = gcnew ProfessorProfileControl(FirstName, LastName, DepartmentName, FacultyName, Code, HireDate);
             control->Dock = DockStyle::Fill;
             sectionsPanel->Controls->Add(control);
 
@@ -271,23 +240,20 @@ namespace UniversityProject {
         System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^ e) {
             Application::Restart();
         }
-        void LoadStudentData()
+        void LoadProfessorData()
         {
             try {
-                SqlDataReader^ reader = db->LoadStudentData(StudentID);
+                SqlDataReader^ reader = db->LoadProfessorData(ProfessorID);
                 if (reader->Read()) {
-					UniversityID = reader["UniversityID"]->ToString();
+                    Code = reader["Code"]->ToString();
                     FirstName = reader["FirstName"]->ToString();
                     LastName = reader["LastName"]->ToString();
-					Gender = reader["Gender"]->ToString();
-                    BirthDate = Convert::ToDateTime(reader["BirthDate"]);
-					Email = reader["Email"]->ToString();
-					Phone = reader["Phone"]->ToString();
-					DepartmentID = Convert::ToInt32(reader["DepartmentID"]);
-					FacultyID = Convert::ToInt32(reader["FacultyID"]);
-					AdmissionDate = Convert::ToDateTime(reader["AdmissionDate"]);
-					AcademicLevelID = Convert::ToInt32(reader["AcademicLevelID"]);
-					this->welcomeLabel->Text = "Welcome, " + FirstName + " " + LastName + "!";
+                    Email = reader["Email"]->ToString();
+                    Phone = reader["Phone"]->ToString();
+                    HireDate = Convert::ToDateTime(reader["HireDate"]);
+                    DepartmentID = Convert::ToInt32(reader["DepartmentID"]);
+                    FacultyID = Convert::ToInt32(reader["FacultyID"]);
+                    this->welcomeLabel->Text = "Welcome, " + FirstName + " " + LastName + "!";
                 }
                 reader->Close();
             }
@@ -309,7 +275,7 @@ namespace UniversityProject {
             catch (Exception^ ex) {
                 MessageBox::Show("Error: " + ex->Message);
             }
-		}
+        }
         void LoadFacultyData() {
             try {
                 SqlDataReader^ reader = db->LoadFacultyData(FacultyID);
@@ -323,28 +289,8 @@ namespace UniversityProject {
                 MessageBox::Show("Error: " + ex->Message);
             }
         }
-        void LoadAcademicLevelData() {
-            try {
-                SqlDataReader^ reader = db->LoadAcademicLevelData(AcademicLevelID);
-                if (reader->Read()) {
-                    AcademicLevelName = reader["LevelName"]->ToString();
-                    // Use departmentName as needed
-                }
-                reader->Close();
-            }
-            catch (Exception^ ex) {
-                MessageBox::Show("Error: " + ex->Message);
-            }
-		}
-       
 
-    
-private: System::Void btnFees_Click(System::Object^ sender, System::EventArgs^ e) {
-    sectionsPanel->Controls->Clear();
 
-    StudentFeeControl^ control = gcnew StudentFeeControl(StudentID);
-    control->Dock = DockStyle::Fill;
-    sectionsPanel->Controls->Add(control);
-}
-};
+
+    };
 }

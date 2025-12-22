@@ -118,20 +118,26 @@
     <ClCompile Include="CoursesGradesControl.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DetailedGradesForm.cpp" />
-    <ClCompile Include="GradeControl.cpp" />
+    <ClCompile Include="GPAControl.cpp" />
+    <ClCompile Include="FeeControl.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="ProfessorAttendanceControl.cpp" />
+    <ClCompile Include="ProfessorCoursesControl.cpp" />
+    <ClCompile Include="ProfessorMainForm.cpp" />
+    <ClCompile Include="ProfessorProfileControl.cpp" />
+    <ClCompile Include="StudentFeeControl.cpp" />
     <ClCompile Include="StudentMainForm.cpp" />
-    <ClCompile Include="Models.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="StudentControl.cpp" />
     <ClCompile Include="StudentProfileControl.cpp" />
-    <ClCompile Include="SubjectControl.cpp" />
+    <ClCompile Include="AdminProfileControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Reflection.Context" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
@@ -149,7 +155,10 @@
     <ClInclude Include="DetailedGradesForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="GradeControl.h">
+    <ClInclude Include="GPAControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="FeeControl.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Login.h">
@@ -158,10 +167,22 @@
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="StudentMainForm.h">
+    <ClInclude Include="ProfessorAttendanceControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="ProfessorCoursesControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="ProfessorMainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Models.h">
+    <ClInclude Include="ProfessorProfileControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="StudentFeeControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="StudentMainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="StudentControl.h">
@@ -170,7 +191,7 @@
     <ClInclude Include="StudentProfileControl.h">
       <FileType>CppControl</FileType>
     </ClInclude>
-    <ClInclude Include="SubjectControl.h">
+    <ClInclude Include="AdminProfileControl.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -181,14 +202,26 @@
     <EmbeddedResource Include="DetailedGradesForm.resx">
       <DependentUpon>DetailedGradesForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GradeControl.resx">
-      <DependentUpon>GradeControl.h</DependentUpon>
+    <EmbeddedResource Include="GPAControl.resx">
+      <DependentUpon>GPAControl.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeeControl.resx">
+      <DependentUpon>FeeControl.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfessorAttendanceControl.resx">
+      <DependentUpon>ProfessorAttendanceControl.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfessorMainForm.resx">
+      <DependentUpon>ProfessorMainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfessorProfileControl.resx">
+      <DependentUpon>ProfessorProfileControl.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentMainForm.resx">
       <DependentUpon>StudentMainForm.h</DependentUpon>
@@ -199,8 +232,8 @@
     <EmbeddedResource Include="StudentProfileControl.resx">
       <DependentUpon>StudentProfileControl.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubjectControl.resx">
-      <DependentUpon>SubjectControl.h</DependentUpon>
+    <EmbeddedResource Include="AdminProfileControl.resx">
+      <DependentUpon>AdminProfileControl.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

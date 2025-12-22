@@ -58,6 +58,7 @@ public:
         this->chartAttendance->ChartAreas->Add(chartArea1);
         this->chartAttendance->Location = Point(450, 290);
         this->chartAttendance->Size = System::Drawing::Size(300, 200);
+		this->chartAttendance->Dock = DockStyle::Bottom;
 
         Series^ series1 = gcnew Series("Attendance");
         series1->ChartType = SeriesChartType::Pie;

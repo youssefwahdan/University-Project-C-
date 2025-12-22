@@ -20,14 +20,15 @@ DataTable^ Database::GetStudents() {
     return dt;
 }
 
-bool Database::AddStudent(String^ name, String^ section, int year) {
+bool Database::AddStudent(String^ firstName, String^ lastName,String^ UniversityID, String^ gender) {
     SqlConnection^ conn = gcnew SqlConnection(connectionString);
     try {
-        String^ query = "INSERT INTO Students (Name, Section, AcademicYear) VALUES (@Name, @Section, @Year)";
+        String^ query = "INSERT INTO Student (FirstName, LastName, UniversityID, Gender) VALUES (@FirstName,@LastName,@UniversityID, @Gender)";
         SqlCommand^ cmd = gcnew SqlCommand(query, conn);
-        cmd->Parameters->AddWithValue("@Name", name);
-        cmd->Parameters->AddWithValue("@Section", section);
-        cmd->Parameters->AddWithValue("@Year", year);
+        cmd->Parameters->AddWithValue("@FirstName", firstName);
+        cmd->Parameters->AddWithValue("@LastName", lastName);
+        cmd->Parameters->AddWithValue("@UniversityID", UniversityID);
+        cmd->Parameters->AddWithValue("@Gender", gender);
         conn->Open();
         return cmd->ExecuteNonQuery() == 1;
     }
@@ -104,14 +105,15 @@ bool Database::AddOrUpdateGrade(int studentId, int subjectId, String^ assignment
     }
 }
 
-bool Database::UpdateStudent(int studentId, String^ name, String^ section, int year) {
+bool Database::UpdateStudent(int studentId, String^ firstName, String^ lastName, String^ UniversityID, String^ Gender) {
     try {
         SqlConnection^ conn = gcnew SqlConnection(connectionString);
-        String^ query = "UPDATE Students SET Name = @Name, Section = @Section, AcademicYear = @Year WHERE StudentId = @StudentId";
+        String^ query = "UPDATE Student SET FirstName = @FirstName,LastName = @LastName,UniversityID = @UniversityID , Gender = @Gender WHERE StudentId = @StudentId";
         SqlCommand^ cmd = gcnew SqlCommand(query, conn);
-        cmd->Parameters->AddWithValue("@Name", name);
-        cmd->Parameters->AddWithValue("@Section", section);
-        cmd->Parameters->AddWithValue("@Year", year);
+        cmd->Parameters->AddWithValue("@FirstName", firstName);
+        cmd->Parameters->AddWithValue("@LastName", lastName);
+        cmd->Parameters->AddWithValue("@UniversityID", UniversityID);
+        cmd->Parameters->AddWithValue("@Gender", Gender);
         cmd->Parameters->AddWithValue("@StudentId", studentId);
 
         conn->Open();
@@ -128,7 +130,7 @@ bool Database::UpdateStudent(int studentId, String^ name, String^ section, int y
 bool Database::DeleteStudent(int studentId) {
     try {
         SqlConnection^ conn = gcnew SqlConnection(connectionString);
-        String^ query = "DELETE FROM Students WHERE StudentId = @StudentId";
+        String^ query = "DELETE FROM Student WHERE StudentID = @StudentId";
         SqlCommand^ cmd = gcnew SqlCommand(query, conn);
         cmd->Parameters->AddWithValue("@StudentId", studentId);
 
@@ -384,6 +386,26 @@ SqlDataReader^ Database::ExecuteReader(String^ query, array<SqlParameter^>^ para
         return nullptr;
     }
 }
+SqlDataReader^ Database::LoadProfessorData(int id) {
+    SqlConnection^ conn = gcnew SqlConnection(connectionString);
+    SqlDataReader^ reader = nullptr;
+    try
+    {
+        conn->Open();
+        String^ query = "SELECT * FROM Professor WHERE ProfessorID = @id";
+        SqlCommand^ cmd = gcnew SqlCommand(query, conn);
+        cmd->Parameters->AddWithValue("@id", id);
+        reader = cmd->ExecuteReader(System::Data::CommandBehavior::CloseConnection);
+        return reader;
+    }
+    catch (Exception^)
+    {
+        if (conn != nullptr)
+            conn->Close();
+        return nullptr;
+    }
+}
+
 
 
 
