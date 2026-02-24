@@ -124,6 +124,7 @@
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="ProfessorAttendanceControl.cpp" />
     <ClCompile Include="ProfessorCoursesControl.cpp" />
+    <ClCompile Include="ProfessorGradesControl.cpp" />
     <ClCompile Include="ProfessorMainForm.cpp" />
     <ClCompile Include="ProfessorProfileControl.cpp" />
     <ClCompile Include="StudentFeeControl.cpp" />
@@ -171,6 +172,9 @@
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="ProfessorCoursesControl.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="ProfessorGradesControl.h">
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="ProfessorMainForm.h">

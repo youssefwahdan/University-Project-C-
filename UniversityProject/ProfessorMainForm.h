@@ -4,6 +4,7 @@
 #include "ProfessorAttendanceControl.h"
 #include "ProfessorCoursesControl.h"
 #include "ProfessorProfileControl.h"
+#include "ProfessorGradesControl.h"
 
 
 #pragma once
@@ -60,6 +61,8 @@ namespace UniversityProject {
         String^ FacultyName;
         DateTime HireDate;
         int AcademicLevelID;
+    private: System::Windows::Forms::Button^ btnGrades;
+    public:
 
         String^ AcademicLevelName;
 
@@ -73,6 +76,7 @@ namespace UniversityProject {
             this->welcomeLabel = (gcnew System::Windows::Forms::Label());
             this->btnLogout = (gcnew System::Windows::Forms::Button());
             this->sidebarPanel = (gcnew System::Windows::Forms::Panel());
+            this->btnGrades = (gcnew System::Windows::Forms::Button());
             this->sectionsPanel = (gcnew System::Windows::Forms::Panel());
             this->navbar = (gcnew System::Windows::Forms::Panel());
             this->sidebarPanel->SuspendLayout();
@@ -151,6 +155,7 @@ namespace UniversityProject {
             // sidebarPanel
             // 
             this->sidebarPanel->BackColor = System::Drawing::Color::DarkGray;
+            this->sidebarPanel->Controls->Add(this->btnGrades);
             this->sidebarPanel->Controls->Add(this->btnAttendance);
             this->sidebarPanel->Controls->Add(this->btnCourses);
             this->sidebarPanel->Controls->Add(this->btnProfile);
@@ -160,6 +165,20 @@ namespace UniversityProject {
             this->sidebarPanel->Padding = System::Windows::Forms::Padding(10, 20, 10, 0);
             this->sidebarPanel->Size = System::Drawing::Size(200, 561);
             this->sidebarPanel->TabIndex = 5;
+            // 
+            // btnGrades
+            // 
+            this->btnGrades->BackColor = System::Drawing::Color::IndianRed;
+            this->btnGrades->Dock = System::Windows::Forms::DockStyle::Top;
+            this->btnGrades->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+            this->btnGrades->ForeColor = System::Drawing::Color::White;
+            this->btnGrades->Location = System::Drawing::Point(10, 170);
+            this->btnGrades->Name = L"btnGrades";
+            this->btnGrades->Size = System::Drawing::Size(180, 50);
+            this->btnGrades->TabIndex = 3;
+            this->btnGrades->Text = L"Grades";
+            this->btnGrades->UseVisualStyleBackColor = false;
+            this->btnGrades->Click += gcnew System::EventHandler(this, &ProfessorMainForm::btnGrades_Click);
             // 
             // sectionsPanel
             // 
@@ -196,13 +215,6 @@ namespace UniversityProject {
             this->ResumeLayout(false);
 
         }
-
-        void btnGPA_Click(System::Object^ sender, System::EventArgs^ e) {
-            sectionsPanel->Controls->Clear();
-            GPAControl^ control = gcnew GPAControl(ProfessorID);
-            control->Dock = DockStyle::Fill;
-            sectionsPanel->Controls->Add(control);
-        }
         void btnAttendance_Click(System::Object^ sender, System::EventArgs^ e)
         {
             sectionsPanel->Controls->Clear();
@@ -231,6 +243,14 @@ namespace UniversityProject {
             sectionsPanel->Controls->Add(control);
 
         }
+            void btnGrades_Click(System::Object^ sender, System::EventArgs^ e) {
+
+                sectionsPanel->Controls->Clear();
+
+                ProfessorGradesControl^ control = gcnew ProfessorGradesControl(ProfessorID);
+                control->Dock = DockStyle::Fill;
+                sectionsPanel->Controls->Add(control);
+            }
         String^ GetConnectionString()
         {
             // Use System::Configuration::ConfigurationManager to access connection strings
@@ -292,5 +312,6 @@ namespace UniversityProject {
 
 
 
-    };
+
+};
 }
