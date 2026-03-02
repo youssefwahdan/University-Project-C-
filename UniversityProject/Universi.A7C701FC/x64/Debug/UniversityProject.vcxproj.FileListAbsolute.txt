@@ -1,0 +1,15 @@
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.vcxproj.AssemblyReference.cache
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.CoursesGradesControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.DetailedGradesForm.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.GPAControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.FeeControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.Login.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.MainForm.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.ProfessorAttendanceControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.ProfessorMainForm.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.ProfessorProfileControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.StudentMainForm.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.StudentControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.StudentProfileControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.AdminProfileControl.resources
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Universi.A7C701FC\x64\Debug\UniversityProject.vcxproj.GenerateResource.cache

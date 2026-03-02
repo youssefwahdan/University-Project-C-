@@ -1,0 +1,166 @@
+  UniversityProject.CoursesGradesControl.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.DetailedGradesForm.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.GPAControl.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.FeeControl.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.Login.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.MainForm.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.ProfessorAttendanceControl.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.ProfessorMainForm.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.ProfessorProfileControl.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.StudentMainForm.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.StudentControl.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.StudentProfileControl.resources - Embedded, ContainedInManifestFile, 
+  UniversityProject.AdminProfileControl.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly UniversityProject, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Reflection.Context, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Windows.Forms.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Class AttendanceControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    InitializeComponent(): PrivateScope, Public, HideBySig
+    UpdateAttendanceStats(Int32, Int32): PrivateScope, Public, HideBySig
+    LoadAttendance(Int32): PrivateScope, Public, HideBySig
+    GetConnectionString(): PrivateScope, Public, HideBySig
+Class DetailedGradesForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class CoursesGradesControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class GPAControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    LoadGPA(Int32): PrivateScope, Public, HideBySig
+Class UniversityProject.FeeControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Windows.Forms.ComboBox cbStudent : Public
+    System.Windows.Forms.ComboBox cbYear : Public
+    System.Windows.Forms.ComboBox cbFeeType : Public
+    System.Windows.Forms.TextBox txtAmount : Public
+    System.Windows.Forms.TextBox txtPaid : Public
+    System.Windows.Forms.DateTimePicker dtDue : Public
+    System.Windows.Forms.Button btnAddFee : Public
+    System.Windows.Forms.DataGridView dgvFees : Public
+    Database db : Public
+    System.Windows.Forms.Label lblStudent : Public
+    System.Windows.Forms.Label lblYear : Public
+    System.Windows.Forms.Label lblFeeType : Public
+    System.Windows.Forms.Label lblAmount : Public
+    System.Windows.Forms.Label lblPaid : Public
+    System.Windows.Forms.Label lblDue : Public
+  Methods:
+    InitializeComponent(): PrivateScope, Public, HideBySig
+    LoadDropdowns(): PrivateScope, Public, HideBySig
+    AddFee(Object, EventArgs): PrivateScope, Public, HideBySig
+    LoadFeeGrid(): PrivateScope, Public, HideBySig
+    GetConnectionString(): PrivateScope, Public, HideBySig
+Class UniversityProject.AdminProfileControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(System.String, System.String, System.String, System.String, System.String, System.DateTime): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.StudentControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.StudentProfileControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(System.String, System.String, System.String, System.String, System.String, System.String, System.DateTime): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.StudentFeeControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.StudentMainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 StudentID : Public
+    System.String UniversityID : Public
+    System.String FirstName : Public
+    System.String LastName : Public
+    System.String Gender : Public
+    System.DateTime BirthDate : Public
+    System.String Email : Public
+    System.String Phone : Public
+    Int32 DepartmentID : Public
+    System.String DepartmentName : Public
+    Int32 FacultyID : Public
+    System.String FacultyName : Public
+    System.DateTime AdmissionDate : Public
+    Int32 AcademicLevelID : Public
+    System.String AcademicLevelName : Public
+  Methods:
+    InitializeComponent(): PrivateScope, Public, HideBySig
+    btnGPA_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    btnAttendance_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    btnCourses_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    btnProfile_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    GetConnectionString(): PrivateScope, Public, HideBySig
+    btnLogout_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    LoadStudentData(): PrivateScope, Public, HideBySig
+    LoadDepartmentData(): PrivateScope, Public, HideBySig
+    LoadFacultyData(): PrivateScope, Public, HideBySig
+    LoadAcademicLevelData(): PrivateScope, Public, HideBySig
+Class UniversityProject.ProfessorAttendanceControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.ProfessorCoursesControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.ProfessorProfileControl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.UserControl
+    Void .ctor(System.String, System.String, System.String, System.String, System.String, System.DateTime): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UniversityProject.ProfessorMainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 ProfessorID : Public
+    System.String Code : Public
+    System.String FirstName : Public
+    System.String LastName : Public
+    System.String Gender : Public
+    System.DateTime BirthDate : Public
+    System.String Email : Public
+    System.String Phone : Public
+    Int32 DepartmentID : Public
+    System.String DepartmentName : Public
+    Int32 FacultyID : Public
+    System.String FacultyName : Public
+    System.DateTime HireDate : Public
+    Int32 AcademicLevelID : Public
+    System.String AcademicLevelName : Public
+  Methods:
+    InitializeComponent(): PrivateScope, Public, HideBySig
+    btnGPA_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    btnAttendance_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    btnCourses_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    btnProfile_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    GetConnectionString(): PrivateScope, Public, HideBySig
+    btnLogout_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    LoadProfessorData(): PrivateScope, Public, HideBySig
+    LoadDepartmentData(): PrivateScope, Public, HideBySig
+    LoadFacultyData(): PrivateScope, Public, HideBySig
+Class UniversityProject.Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

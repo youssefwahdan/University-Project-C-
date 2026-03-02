@@ -1,0 +1,45 @@
+﻿  AttendanceControl.cpp
+  CoursesGradesControl.cpp
+  Database.cpp
+  DetailedGradesForm.cpp
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Database.cpp(180,23): warning C4101: 'ex': unreferenced local variable
+  GPAControl.cpp
+  FeeControl.cpp
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\FeeControl.h(34,21): warning C4677: 'db': signature of non-private member contains assembly private type 'Database'
+  (compiling source file 'FeeControl.cpp')
+      D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Database.h(7,11):
+      see declaration of 'Database'
+  
+  Login.cpp
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\FeeControl.h(34,21): warning C4677: 'db': signature of non-private member contains assembly private type 'Database'
+  (compiling source file 'Login.cpp')
+      D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Database.h(7,11):
+      see declaration of 'Database'
+  
+  MainForm.cpp
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\FeeControl.h(34,21): warning C4677: 'db': signature of non-private member contains assembly private type 'Database'
+  (compiling source file 'MainForm.cpp')
+      D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Database.h(7,11):
+      see declaration of 'Database'
+  
+  ProfessorAttendanceControl.cpp
+  ProfessorCoursesControl.cpp
+  ProfessorMainForm.cpp
+  ProfessorProfileControl.cpp
+  StudentFeeControl.cpp
+  StudentMainForm.cpp
+  Program.cpp
+D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\FeeControl.h(34,21): warning C4677: 'db': signature of non-private member contains assembly private type 'Database'
+  (compiling source file 'Program.cpp')
+      D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\Database.h(7,11):
+      see declaration of 'Database'
+  
+  StudentControl.cpp
+  StudentProfileControl.cpp
+  AdminProfileControl.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  AttendanceControl.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  UniversityProject.vcxproj -> D:\NCTU\Second Year\First Semester\C++\Ass2\University-Project-C-\UniversityProject\x64\Debug\UniversityProject.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
