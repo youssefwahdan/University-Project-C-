@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C701FC-C377-EA4D-EC8A-F02D3C10307C}|UniversityProject\\UniversityProject.vcxproj|C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\StudentControl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A7C701FC-C377-EA4D-EC8A-F02D3C10307C}|UniversityProject\\UniversityProject.vcxproj|solutionrelative:UniversityProject\\StudentControl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C701FC-C377-EA4D-EC8A-F02D3C10307C}|UniversityProject\\UniversityProject.vcxproj|C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\StudentControl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{A7C701FC-C377-EA4D-EC8A-F02D3C10307C}|UniversityProject\\UniversityProject.vcxproj|solutionrelative:UniversityProject\\StudentControl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C701FC-C377-EA4D-EC8A-F02D3C10307C}|UniversityProject\\UniversityProject.vcxproj|C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\MainForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{A7C701FC-C377-EA4D-EC8A-F02D3C10307C}|UniversityProject\\UniversityProject.vcxproj|solutionrelative:UniversityProject\\MainForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 369,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StudentControl.h",
+              "DocumentMoniker": "C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\StudentControl.h",
+              "RelativeDocumentMoniker": "UniversityProject\\StudentControl.h",
+              "ToolTip": "C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\StudentControl.h",
+              "RelativeToolTip": "UniversityProject\\StudentControl.h",
+              "ViewState": "AgIAAFACAAAAAAAAAAAmwFsCAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-22T16:13:36.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentControl.h [Design]",
+              "DocumentMoniker": "C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\StudentControl.h",
+              "RelativeDocumentMoniker": "UniversityProject\\StudentControl.h",
+              "ToolTip": "C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\StudentControl.h [Design]",
+              "RelativeToolTip": "UniversityProject\\StudentControl.h [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-21T23:08:30.926Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.h [Design]",
+              "DocumentMoniker": "C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\MainForm.h",
+              "RelativeDocumentMoniker": "UniversityProject\\MainForm.h",
+              "ToolTip": "C:\\Users\\youss\\OneDrive\\Desktop\\University-Project-C-\\UniversityProject\\MainForm.h [Design]",
+              "RelativeToolTip": "UniversityProject\\MainForm.h [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-12-21T22:52:27.121Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
